@@ -29,5 +29,6 @@ Think to install gulp in global on your desktop : `npm i gulp -g`, if this has n
 ### How to start ?
 ```
 $ nodemon index.js
+$ open http://localhost:8080/
 ```
 Same, think to install nodemon in global on your desktop : `npm i nodemon -g` before run it.
