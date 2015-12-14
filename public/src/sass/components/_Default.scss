@@ -5,13 +5,23 @@
 
 .Default{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     min-height: 100vh;
     background: $default-backgroundColor;
 
-    &_content{
+    &_wrapper {
         margin: auto;
-        font-size: 1.75rem;
-        text-transform: uppercase;
-        color: $default-fontColor;
+    }
+
+    &_box{
+        margin-bottom: 1rem;
+        width: 2rem;    height: 4rem;
+        background-color: $primaryColor-dark;
+    }
+
+    &_info {
+        color: $primaryColor-dark;
+        text-align: center;
     }
 }

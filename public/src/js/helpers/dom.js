@@ -28,12 +28,12 @@ export function css(styles) {
 
 
 /*
- * Change text content of elements
+ * Change html content of elements
  *
  * @params {string} text
  * @return {this}
  */
-export function text(text) {
+export function html(text) {
     this.map(element => {
         element.innerHTML = text;
     });

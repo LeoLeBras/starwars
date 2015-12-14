@@ -1,9 +1,13 @@
-import express from 'express';
+var express = require('express'),
+	app = express();
 
-const app = express();
-const port = process.env.PORT || 8080;
-const io = require('socket.io').listen(app.listen(port));
+var port = process.env.PORT || 8080;
+var io = require('socket.io').listen(app.listen(port));
 
-app.use(express.static(__dirname + '/public/__build__/'));
+app.use(express.static(__dirname + '/public/'));
 
-console.log('Server running at localhost:' + port + '/');
+io.on('connection', function() {
+    console.log('hello');
+});
+
+console.log('Your server is running on http://localhost:' + port);
