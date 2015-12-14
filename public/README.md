@@ -21,8 +21,9 @@ and start :
 
 ```shell
 $ git clone https://github.com/LeoLeBras/starwarst.git
-$ cd starwars/public
+$ cd starwars
 $ npm i                         # Install Node.js components listed in ./package.json
+$ cd public
 ```
 Think to install gulp in global on your desktop : `npm i gulp -g`, if this has not been done before.
 
@@ -32,7 +33,7 @@ Think to install gulp in global on your desktop : `npm i gulp -g`, if this has n
 $ npm start                     # or: gulp dev
 ```
 
-This will start a lightweight development server (browsersync dev server) with live reloading.
+This will start a lightweight development server (browsersync dev server) with live reloading (default: localhost:8000).
 
 #### How to build for production ?
 
