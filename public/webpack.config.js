@@ -8,7 +8,7 @@ module.exports = {
     devtool: 'source-map',
     entry: entry,
     output: {
-        path: config.dir.distDir + config.dir.jsDir,
+        path: config.dir.buildDir + config.dir.jsDir,
         filename: '[name]',
     },
     watch: false,

@@ -1,4 +1,4 @@
-import { select, html, css } from './helpers/dom';
+import { select, html } from './helpers/dom';
 import gyro from './vendors/gyro';
 import dynamics from 'dynamics.js';
 

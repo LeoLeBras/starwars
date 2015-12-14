@@ -4,8 +4,7 @@ export default {
     },
     dir: {
         srcDir: __dirname + '/src/',
-        buildDir: './__build__/',
-        distDir: __dirname + '/dist/',
+        buildDir: __dirname + '/__build__/',
         cssDir: 'css/',
         imgDir: 'img/',
         jsDir: 'js/',

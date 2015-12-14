@@ -167,7 +167,7 @@ gulp.task('build', ['fonts', 'sass', 'img', 'js', 'html'], () => {
         .pipe(gulp.dest(buildDir + cssDir));
 
     // Uglify js files
-    gulp.src(buildDir + jsDir + '**/*.js')
+    gulp.src(buildDir + jsDir + '*.js')
         .pipe(babel(config.javascript.babel))
         .pipe(uglify())
         .pipe(gulp.dest(buildDir + jsDir));
