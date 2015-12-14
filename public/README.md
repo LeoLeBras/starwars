@@ -22,7 +22,7 @@ and start :
 ```shell
 $ git clone https://github.com/LeoLeBras/starwarst.git
 $ cd starwars
-$ npm i                         # Install Node.js components listed in ./package.json
+$ npm i                        # Install Node.js components listed in ./package.json
 $ cd public
 ```
 Think to install gulp in global on your desktop : `npm i gulp -g`, if this has not been done before.
@@ -30,7 +30,7 @@ Think to install gulp in global on your desktop : `npm i gulp -g`, if this has n
 #### How to start the dev mode ?
 
 ```shell
-$ npm start                     # or: gulp dev
+$ sudo npm start               # or: gulp dev
 ```
 
 This will start a lightweight development server (browsersync dev server) with live reloading (default: localhost:8000).
