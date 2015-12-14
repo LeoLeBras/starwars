@@ -30,3 +30,4 @@ Think to install gulp in global on your desktop : `npm i gulp -g`, if this has n
 ```
 $ nodemon index.js
 ```
+Same, think to install nodemon in global on your desktop : `npm i nodemon -g` before run it.
