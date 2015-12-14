@@ -23,10 +23,8 @@ and start :
 $ git clone https://github.com/LeoLeBras/starwarst.git
 $ cd starwars
 $ npm i                         # Install Node.js components listed in ./package.json
-$ cd public
-$ npm start
+$ gulp dev
 ```
-Think to install gulp in global on your desktop : `npm i gulp -g`, if this has not been done before.
 
 ### How to start ?
 ```
