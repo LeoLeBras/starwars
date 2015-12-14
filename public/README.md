@@ -4,12 +4,12 @@
 - Node.js (5.0 or newer)
 
 ## Stack
-- [Babel](http://babeljs.io/) `^6.0.0` ES6+ support
-- [Sass](http://sass-lang.com/) CSS with superpowers
-- [Imagemin](https://github.com/imagemin/imagemin) minify images seamlessly
-- [Browsersync](http://www.browsersync.io/) time-saving synchronised browser testing
 - [Gulp](http://gulpjs.com/) streaming build system
 - [Webpack](https://webpack.github.io/) module loader and bundler
+- [Browsersync](http://www.browsersync.io/) time-saving synchronised browser testing
+- [Sass](http://sass-lang.com/) CSS with superpowers
+- [Babel](http://babeljs.io/) `^6.0.0` ES6+ support
+- [Imagemin](https://github.com/imagemin/imagemin) minify images seamlessly
 
 
 ## Getting started
