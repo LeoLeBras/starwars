@@ -15,11 +15,9 @@
 
 import base64 from 'gulp-base64';
 import babel from 'gulp-babel';
-import browserSync, { reload }  from 'browser-sync';
 import clean  from 'gulp-rimraf';
 import cssbeautify  from 'gulp-cssbeautify';
 import cssnano  from 'gulp-cssnano';
-import del from 'del';
 import gulp  from 'gulp';
 import imagemin  from 'gulp-imagemin';
 import inline  from 'gulp-inline-source';
@@ -32,20 +30,7 @@ import ttf2woff2  from 'gulp-ttf2woff2';
 import watch  from 'gulp-watch';
 import webpack  from 'gulp-webpack';
 import config from './config.js';
-const { srcDir, buildDir, distDir, cssDir, imgDir, sassDir, fontsDir, jsDir } = config.dir;
-
-
-
-// Browser sync
-gulp.task('browser_sync', () => (
-    browserSync({
-        server: {
-            baseDir: buildDir
-        },
-        port: config.server.port,
-        online: true
-    })
-));
+const { srcDir, buildDir, cssDir, imgDir, sassDir, fontsDir, jsDir } = config.dir;
 
 
 
@@ -89,10 +74,7 @@ gulp.task('sass', () => {
         ]))
         .pipe(cssbeautify())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(buildDir + cssDir))
-        .pipe(reload({
-            stream: true
-        }));
+        .pipe(gulp.dest(buildDir + cssDir));;
 });
 
 
@@ -102,9 +84,6 @@ gulp.task('js', () => (
     gulp.src(`${srcDir + jsDir}*.js`)
         .pipe(webpack(require('./webpack.config.js')))
         .pipe(gulp.dest(buildDir + jsDir))
-        .pipe(reload({
-            stream: true
-        }))
 ));
 
 
@@ -114,9 +93,6 @@ gulp.task('img', () => (
     gulp.src(srcDir + imgDir + '**')
         .pipe(imagemin())
         .pipe(gulp.dest(buildDir + imgDir))
-        .pipe(reload({
-            stream: true
-        }))
 ));
 
 
@@ -125,9 +101,6 @@ gulp.task('img', () => (
 gulp.task('html', () => (
     gulp.src(srcDir + '*.html')
         .pipe(gulp.dest(buildDir))
-        .pipe(reload({
-            stream: true
-        }))
 ));
 
 
@@ -160,7 +133,7 @@ gulp.task('fonts', () => {
 
 // Dev
 gulp.task('dev', ['clean'], () => {
-    gulp.start('browser_sync', 'fonts', 'sass', 'img', 'js', 'html');
+    gulp.start('fonts', 'sass', 'img', 'js', 'html');
     watch(srcDir + imgDir + '**', () => gulp.start('img'));
     watch(srcDir + sassDir + '**/*.scss', () => gulp.start('sass'));
     watch(srcDir + fontsDir + '**/*', () => gulp.start('fonts'));
@@ -169,26 +142,21 @@ gulp.task('dev', ['clean'], () => {
 
 
 
-// Clean dist dir
-gulp.task('clean-dist', () => del([distDir + '**/*']) );
-
-
-
-// Prod
-gulp.task('build', ['clean-dist'], () => {
+// Build
+gulp.task('build', ['fonts', 'sass', 'img', 'js', 'html'], () => {
 
     // Move img files
     gulp.src(buildDir + imgDir + '**')
-        .pipe(gulp.dest(distDir + imgDir));
+        .pipe(gulp.dest(buildDir + imgDir));
 
     // Move html files + inline scripts
     gulp.src(buildDir + '*.html')
         .pipe(inline())
-        .pipe(gulp.dest(distDir));
+        .pipe(gulp.dest(buildDir));
 
     // Move fonts files
     gulp.src(buildDir + fontsDir + '**/*')
-        .pipe(gulp.dest(distDir + fontsDir));
+        .pipe(gulp.dest(buildDir + fontsDir));
 
     // Base64 img in css files files and minify (except css font files)
     gulp.src(buildDir + cssDir + '*')
@@ -196,13 +164,13 @@ gulp.task('build', ['clean-dist'], () => {
             extensions: ['svg', 'png', 'jpg']
         }))
         .pipe(cssnano())
-        .pipe(gulp.dest(distDir + cssDir));
+        .pipe(gulp.dest(buildDir + cssDir));
 
     // Uglify js files
     gulp.src(buildDir + jsDir + '**/*.js')
         .pipe(babel(config.javascript.babel))
         .pipe(uglify())
-        .pipe(gulp.dest(distDir + jsDir));
+        .pipe(gulp.dest(buildDir + jsDir));
 
 });
 

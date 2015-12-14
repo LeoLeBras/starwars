@@ -11,7 +11,7 @@ module.exports = {
         path: config.dir.distDir + config.dir.jsDir,
         filename: '[name]',
     },
-    watch: true,
+    watch: false,
     module: {
         loaders: [{
             loader: 'babel-loader',
