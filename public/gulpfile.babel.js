@@ -83,6 +83,13 @@ gulp.task('js', () => {
         entry = { ...entry, [item]: `${config.dir.srcDir}${config.dir.jsDir}${item}` };
     });
 
+    let vueLoader = {};
+    if(!argv.argv.watch) {
+        vueLoader = {
+            css: ExtractTextPlugin.extract('style-loader', 'css-loader', 'stylus-loader'),
+        };
+    }
+
     return gulp.src(`${srcDir + jsDir}*.js`)
         .pipe(webpack({
             devtool: 'source-map',
@@ -118,12 +125,10 @@ gulp.task('js', () => {
                 }]
             },
             vue: {
-                loaders: {
-                    css: ExtractTextPlugin.extract('css')
-                }
+                loaders: vueLoader
             },
             plugins: [
-                new ExtractTextPlugin('app.css'),
+                new ExtractTextPlugin('[name].css', { disabled: !argv.argv.watch }),
             ]
         }))
         .pipe(gulp.dest(buildDir + jsDir));

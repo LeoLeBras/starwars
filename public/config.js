@@ -21,7 +21,7 @@ export default {
         autoprefixer: ['> 98%']
     },
     javascript: {
-        entry: ['index.js', 'mobile.js'],
+        entry: ['desktop.js', 'mobile.js'],
         babel: { presets: ['es2015', 'stage-0'] }
     }
 };

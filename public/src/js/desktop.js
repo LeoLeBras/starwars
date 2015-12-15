@@ -5,8 +5,8 @@ import Home from './components/desktop-home';
 import Phone from './components/desktop-phone';
 import Explorer from './components/desktop-explorer';
 
-Vue.use(Router)
-var router = new Router()
+Vue.use(Router);
+var router = new Router();
 
 router.map({
     '/': {
@@ -18,10 +18,10 @@ router.map({
     '/explorer': {
         component: Explorer
     }
-})
+});
 
 router.redirect({
     '*': '/'
-})
+});
 
 router.start(App, '.app');
