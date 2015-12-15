@@ -23,13 +23,14 @@ and start :
 $ git clone https://github.com/LeoLeBras/starwarst.git
 $ cd starwars
 $ npm i                         # Install Node.js components listed in ./package.json
+$ gulp
 $ npm start
+$ open http://localhost:8080/
 ```
 Think to install gulp in global on your desktop : `npm i gulp -g`, if this has not been done before.
 
 ### How to start ?
 ```
 $ npm run dev
-$ open http://localhost:8080/
 ```
 Same, think to install nodemon in global on your desktop : `npm i nodemon -g` before run it.
