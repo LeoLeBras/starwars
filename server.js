@@ -1,15 +1,13 @@
-// http://socket.io/docs/#using-with-express-3/4
+import express from 'express';
 
-var express = require('express'),
-	app = express();
-
-var port = process.env.PORT || 8080;
-var io = require('socket.io').listen(app.listen(port));
+const app = express();
+const port = process.env.PORT || 8080;
+const io = require('socket.io').listen(app.listen(port));
 
 app.use(express.static(__dirname + '/public/__build__/'));
 
-io.on('connection', function(socket) {
-	socket.on('question', function(data){
+io.on('connection', (socket) => {
+	socket.on('question', (data) => {
 		socket.emit('answer', {
 			status: 'ok',
 			data
