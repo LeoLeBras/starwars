@@ -30,7 +30,6 @@
                         friction: 300,
                         duration: 500
                     });
-
                 }
             });
         }

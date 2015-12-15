@@ -1,7 +1,8 @@
 <template>
     <div>
         <h1>Phone</h1>
-        <span>key: {{ key }}</span>
+        <div>url: <a href="https://goo.gl/0uwLud">https://goo.gl/0uwLud</a> (phone)</div>
+        <div>key: {{ key }}</div>
     </div>
 </template>
 
@@ -16,6 +17,9 @@
          *
          * Set initial state :
          *   - {integer} key
+         *
+         * @TODO The server must generate the key
+         *       and not the client (priority: 1)
          *
          * @return {object}
          */
