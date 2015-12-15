@@ -5,6 +5,7 @@ const socket = io();
 const ship = document.querySelector('.Default_box');
 
 const key = Math.floor(Math.random() * 10000000);
+socket.emit('createUser', { key })
 select('.Default_key')::html(Math.abs(key));
 
 socket.on('handleRotation', (response) => {
