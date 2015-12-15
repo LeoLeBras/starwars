@@ -32,6 +32,7 @@
     "del": "^2.1.0",
     "dynamics.js": "0.0.9",
     "express": "^4.13.3",
+    "extract-text-webpack-plugin": "^0.9.1",
     "gulp-babel": "^6.1.0",
     "gulp-base64": "^0.1.2",
     "gulp-cssbeautify": "^0.1.3",

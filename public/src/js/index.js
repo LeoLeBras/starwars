@@ -1,13 +1,21 @@
 import Vue from 'vue';
 import App from './components/app.vue';
+import dynamics from 'dynamics.js';
 
-var socket = io();
-socket.emit('question', {
-    key: '???'
-});
+const socket = io();
+const ship = document.querySelector('.Default_box');
 
-socket.on('answer', (data) => {
-    console.log(data);
+socket.on('handleRotation', (response) => {
+    console.log(response);
+
+
+    dynamics.animate(ship, {
+        rotateZ: `${response.data.rotation}deg`,
+    }, {
+        frequency: 300,
+        friction: 300,
+        duration: 500
+    });
 });
 
 new Vue({

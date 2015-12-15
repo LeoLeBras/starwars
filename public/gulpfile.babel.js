@@ -13,7 +13,7 @@
  * Last updated: 2015-11-27
  */
 
-import argv from 'yargs';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import base64 from 'gulp-base64';
 import babel from 'gulp-babel';
 import clean  from 'gulp-rimraf';
@@ -30,6 +30,8 @@ import ttf2woff  from 'gulp-ttf2woff';
 import ttf2woff2  from 'gulp-ttf2woff2';
 import watch  from 'gulp-watch';
 import webpack  from 'gulp-webpack';
+import argv from 'yargs';
+
 import config from './config.js';
 const { srcDir, buildDir, cssDir, imgDir, sassDir, fontsDir, jsDir } = config.dir;
 
@@ -104,7 +106,15 @@ gulp.task('js', () => {
                     test: /\.vue$/,
                     loader: 'vue'
                 }]
-            }
+            },
+            vue: {
+                loaders: {
+                    css: ExtractTextPlugin.extract('css')
+                }
+            },
+            plugins: [
+                new ExtractTextPlugin('[name].css')
+            ]
         }))
         .pipe(gulp.dest(buildDir + jsDir));
 });

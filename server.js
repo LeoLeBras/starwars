@@ -7,11 +7,10 @@ const io = require('socket.io').listen(app.listen(port));
 app.use(express.static(__dirname + '/public/__build__/'));
 
 io.on('connection', (socket) => {
-	socket.on('question', (data) => {
-		socket.emit('answer', {
-			status: 'ok',
-			data
-		});
+	socket.on('handleRotation', (data) => {
+		data.headers.from = 'server';
+		console.log(data);
+		socket.broadcast.emit('handleRotation', data);
 	});
 });
 
