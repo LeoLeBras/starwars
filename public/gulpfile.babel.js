@@ -5,12 +5,6 @@
  * Work with Gulp
  * http://gulpjs.com/
  *
- * Copyright 2014 - 2015
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- * Date of creative : 2014-01-04
- * Last updated: 2015-11-27
  */
 
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
@@ -122,7 +116,15 @@ gulp.task('js', () => {
                       'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
                     ]
                 }]
-            }
+            },
+            vue: {
+                loaders: {
+                    css: ExtractTextPlugin.extract('css')
+                }
+            },
+            plugins: [
+                new ExtractTextPlugin('app.css'),
+            ]
         }))
         .pipe(gulp.dest(buildDir + jsDir));
 });
@@ -185,6 +187,10 @@ gulp.task('dev', ['clean'], () => {
 
 // Build
 gulp.task('build', ['sass', 'img', 'js', 'html'], () => {
+
+    // Move js/*.css to css
+    gulp.src(buildDir + jsDir + '*.css')
+        .pipe(gulp.dest(buildDir + cssDir));
 
     // Move img files
     gulp.src(buildDir + imgDir + '**')

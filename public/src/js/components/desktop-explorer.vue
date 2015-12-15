@@ -1,8 +1,6 @@
 <template>
     <div class="container">
-        <div class="wrapper">
-            <div class="ship"></div>
-        </div>
+        <canvas width="300" height="300"></canvas>
     </div>
 </template>
 
