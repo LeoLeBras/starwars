@@ -163,7 +163,7 @@ gulp.task('dev', ['clean'], () => {
 
 
 // Build
-gulp.task('build', ['fonts', 'sass', 'img', 'js', 'html'], () => {
+gulp.task('build', ['sass', 'img', 'js', 'html'], () => {
 
     // Move img files
     gulp.src(buildDir + imgDir + '**')
@@ -173,6 +173,10 @@ gulp.task('build', ['fonts', 'sass', 'img', 'js', 'html'], () => {
     gulp.src(buildDir + '*.html')
         .pipe(inline())
         .pipe(gulp.dest(buildDir));
+
+    // Move fonts files
+    gulp.src(srcDir + fontsDir + '**/*')
+        .pipe(gulp.dest(buildDir + fontsDir));
 
     // Base64 img in css files files and minify (except css font files)
     gulp.src(buildDir + cssDir + '*')
