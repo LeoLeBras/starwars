@@ -97,6 +97,15 @@ gulp.task('js', () => {
                 path: config.dir.buildDir + config.dir.jsDir,
                 filename: '[name]',
             },
+            resolve: {
+                extensions: ['', '.js', '.vue'],
+                modulesDirectories: [
+                    'node_modules',
+                    'src/js/vendors',
+                    'src/js/helpers',
+                    'src/js/components'
+                ]
+            },
             watch: argv.argv.watch,
             module: {
                 loaders: [{
