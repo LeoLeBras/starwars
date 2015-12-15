@@ -18,7 +18,6 @@ io.on('connection', (socket) => {
 		let index = users.indexOf(parseInt(data.key));
 		if(index !== -1) {
 			users = users.slice(index, 1); // Remove user
-			console.log(users);
 			io.emit('connectDevice', {
 				headers: {
 					from: 'server',
@@ -33,7 +32,6 @@ io.on('connection', (socket) => {
 
 	// Handle rotation of the device
 	socket.on('handleRotation', (data) => {
-		console.log(data);
 		socket.broadcast.emit('handleRotation', data);
 	});
 
