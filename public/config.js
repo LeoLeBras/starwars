@@ -22,6 +22,8 @@ export default {
     },
     javascript: {
         entry: ['index.js', 'mobile.js'],
-        babel: { presets: ['es2015', 'stage-0'] }
+        babel: {
+            presets: ['es2015', 'stage-0']
+        }
     }
 };

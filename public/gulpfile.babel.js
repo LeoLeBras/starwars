@@ -100,6 +100,9 @@ gulp.task('js', () => {
                 loaders: [{
                     loader: 'babel-loader',
                     query: config.javascript.babel
+                }, {
+                    test: /\.vue$/,
+                    loader: 'vue'
                 }]
             }
         }))

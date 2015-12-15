@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "description": "HETIC P2019",
   "scripts": {
-      "start": "gulp dev --watch",
-      "test": "gulpt -T --sorted",
-      "build": "gulp build"
+    "start": "gulp dev --watch",
+    "test": "gulpt -T --sorted",
+    "build": "gulp build"
   },
   "author": "Léo LE BRAS",
   "license": "MIT"
