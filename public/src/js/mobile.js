@@ -1,9 +1,8 @@
+
 import { select, html } from './helpers/dom';
 import gyro from './vendors/gyro';
 import dynamics from 'dynamics.js';
-
 const socket = io();
-
 const maxRotation = 40;
 const ship = select('.Default_box')[0];
 const duration = 500;
@@ -18,7 +17,6 @@ gyro.startTracking(function(o) {
     if(Math.abs(rotation) > maxRotation)
         rotation = maxRotation * (rotation / Math.abs(rotation));
 
-
     if(Math.abs(rotation - lastRotation) > 5) {
         dynamics.animate(ship, {
             rotateZ: `${rotation}deg`,
@@ -28,17 +26,41 @@ gyro.startTracking(function(o) {
             duration: duration
         });
 
+        socket.emit('handleRotation', {
+            headers: {
+                from: 'mobile'
+            },
+            data: {
+                rotation
+            }
+        });
         setTimeout(() => {
-            socket.emit('handleRotation', {
-                headers: {
-                    from: 'mobile'
-                },
-                data: {
-                    rotation
-                }
-            });
             select('.Default_info')::html(Math.abs(lastRotation));
         }, duration);
     }
 
 });
+
+import Vue from 'vue';
+import Router from 'vue-router';
+import App from './components/app.vue';
+import Home from './components/home.vue';
+import Control from './components/control.vue';
+
+Vue.use(Router)
+var router = new Router()
+
+router.map({
+    '/': {
+        component: Home
+    },
+    '/control': {
+        component: Control
+    }
+})
+
+router.redirect({
+  '*': '/'
+})
+
+router.start(App, '.app')

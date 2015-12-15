@@ -106,15 +106,7 @@ gulp.task('js', () => {
                     test: /\.vue$/,
                     loader: 'vue'
                 }]
-            },
-            vue: {
-                loaders: {
-                    css: ExtractTextPlugin.extract('css')
-                }
-            },
-            plugins: [
-                new ExtractTextPlugin('[name].css')
-            ]
+            }
         }))
         .pipe(gulp.dest(buildDir + jsDir));
 });

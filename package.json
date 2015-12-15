@@ -56,6 +56,7 @@
     "vue": "^1.0.11",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^7.2.0",
+    "vue-router": "^0.7.7",
     "webpack": "^1.12.9",
     "yargs": "^3.31.0"
   }

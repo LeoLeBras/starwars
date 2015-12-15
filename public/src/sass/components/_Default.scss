@@ -16,11 +16,12 @@
 
     &_box{
         margin-bottom: 1rem;
-        width: 2rem;    height: 4rem;
+        width: 4rem;    height: 14rem;
         background-color: $primaryColor-dark;
     }
 
-    &_info {
+    &_info,
+    &_key {
         color: $primaryColor-dark;
         text-align: center;
     }

@@ -1,19 +1,16 @@
 <template>
-    <h1 class="red">{{msg}}</h1>
+    <router-view
+        class="view"
+        keep-alive
+        transition
+        transition-mode="out-in">
+    </router-view>
 </template>
 
 <script>
-export default {
-    data () {
-        return {
-            msg: 'Hello world!'
-        }
+    export default {
     }
-}
 </script>
 
 <style>
-    .red {
-        color: black;
-    }
 </style>
