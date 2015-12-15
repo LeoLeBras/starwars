@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import App from './components/app';
-import Home from './components/home';
-import Control from './components/control';
+import App from './components/mobile-app';
+import Home from './components/mobile-home';
+import Control from './components/mobile-control';
 
 Vue.use(Router)
 var router = new Router()
@@ -17,7 +17,7 @@ router.map({
 })
 
 router.redirect({
-  '*': '/'
+    '*': '/'
 })
 
 router.start(App, '.app')

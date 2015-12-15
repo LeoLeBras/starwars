@@ -1,17 +1,13 @@
 <template>
     <!-- html -->
     <form v-on:submit.prevent="onSubmit">
-        <input type="text" name="name" class="input" v-model="key">
+        <input type="text" class="input" v-model="key">
         <button type="submit" class="submit">Envoyer</button>
     </form>
 </template>
 
 <script>
     export default {
-        data: {
-            key: null
-        },
-
         methods: {
 
             /*

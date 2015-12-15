@@ -1,29 +1,28 @@
 <template>
     <div class="container">
         <div class="wrapper">
-            <div class="ship" data-id="ship"></div>
+            <div class="ship"></div>
         </div>
     </div>
 </template>
 
 <script>
 
-    import gyro from 'gyro';
-    import dynamics from 'dynamics.js';
+    import gyro from 'gyro'; // gyroscope
+    import dynamics from 'dynamics.js'; // animtion
 
-    const maxRotation = 45
-    const duration = 500;
     const socket = io();
+    const duration = 500; // (animation)
+    const maxRotation = 45
 
     export default {
 
         /*
          * ready()
-         * Component did mount
          *
          */
         ready() {
-             const key = this.$route.query; // get the key
+             const key = this.$route.query.key; // get the key
 
              let rotation = 0, lastRotation = 0;
 

@@ -1,22 +1,27 @@
-import { select, html } from './helpers/dom';
-import dynamics from 'dynamics.js';
+import Vue from 'vue';
+import Router from 'vue-router';
+import App from './components/desktop-app';
+import Home from './components/desktop-home';
+import Phone from './components/desktop-phone';
+import Explorer from './components/desktop-explorer';
 
-const socket = io();
-const ship = document.querySelector('.Default_box');
+Vue.use(Router)
+var router = new Router()
 
-const key = Math.floor(Math.random() * 10000);
-socket.emit('createUser', { key })
-select('.Default_key')::html(Math.abs(key));
-
-socket.on('handleRotation', (response) => {
-    if(response.headers.client.key == key) {
-        dynamics.animate(ship, {
-            rotateZ: `${response.data.rotation}deg`,
-        }, {
-            frequency: 300,
-            friction: 300,
-            duration: 500
-        });
-
+router.map({
+    '/': {
+        component: Home
+    },
+    '/phone': {
+        component: Phone
+    },
+    '/explorer': {
+        component: Explorer
     }
-});
+})
+
+router.redirect({
+    '*': '/'
+})
+
+router.start(App, '.app');
