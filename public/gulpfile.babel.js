@@ -13,6 +13,7 @@
  * Last updated: 2015-11-27
  */
 
+import argv from 'yargs';
 import base64 from 'gulp-base64';
 import babel from 'gulp-babel';
 import clean  from 'gulp-rimraf';
@@ -80,11 +81,30 @@ gulp.task('sass', () => {
 
 
 // Babel
-gulp.task('js', () => (
-    gulp.src(`${srcDir + jsDir}*.js`)
-        .pipe(webpack(require('./webpack.config.js')))
-        .pipe(gulp.dest(buildDir + jsDir))
-));
+gulp.task('js', () => {
+    let entry = {};
+    config.javascript.entry.map(item => {
+        entry = { ...entry, [item]: `${config.dir.srcDir}${config.dir.jsDir}${item}` };
+    });
+
+    return gulp.src(`${srcDir + jsDir}*.js`)
+        .pipe(webpack({
+            devtool: 'source-map',
+            entry: entry,
+            output: {
+                path: config.dir.buildDir + config.dir.jsDir,
+                filename: '[name]',
+            },
+            watch: argv.argv.watch,
+            module: {
+                loaders: [{
+                    loader: 'babel-loader',
+                    query: config.javascript.babel
+                }]
+            }
+        }))
+        .pipe(gulp.dest(buildDir + jsDir));
+});
 
 
 
