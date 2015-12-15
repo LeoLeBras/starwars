@@ -1,6 +1,5 @@
-
-import { select, html } from './helpers/dom';
-import gyro from './vendors/gyro';
+import { select, html } from 'dom'; // helpers
+import gyro from 'gyro';
 import dynamics from 'dynamics.js';
 const socket = io();
 const maxRotation = 40;
@@ -43,9 +42,9 @@ gyro.startTracking(function(o) {
 
 import Vue from 'vue';
 import Router from 'vue-router';
-import App from './components/app.vue';
-import Home from './components/home.vue';
-import Control from './components/control.vue';
+import App from './components/app';
+import Home from './components/home';
+import Control from './components/control';
 
 Vue.use(Router)
 var router = new Router()
