@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "postinstall": "gulp"
+    "postinstall": "npm i gulp && gulp"
   },
   "engines": {
     "node": "5.1.0"
@@ -32,7 +32,6 @@
     "del": "^2.1.0",
     "dynamics.js": "0.0.9",
     "express": "^4.13.3",
-    "gulp": "^3.9.0",
     "gulp-babel": "^6.1.0",
     "gulp-base64": "^0.1.2",
     "gulp-cssbeautify": "^0.1.3",
