@@ -95,7 +95,8 @@ gulp.task('js', () => {
             entry: entry,
             output: {
                 path: config.dir.buildDir + config.dir.jsDir,
-                filename: '[name]',
+                publicPath: '',
+                filename: '[name]'
             },
             resolve: {
                 extensions: ['', '.js', '.vue'],
@@ -114,6 +115,12 @@ gulp.task('js', () => {
                 }, {
                     test: /\.vue$/,
                     loader: 'vue'
+                },{
+                    test: /.*\.(gif|png|jpe?g|svg)$/i,
+                    loaders: [
+                      'url?limit=1000&name=img/[name].[ext]',
+                      'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+                    ]
                 }]
             }
         }))
