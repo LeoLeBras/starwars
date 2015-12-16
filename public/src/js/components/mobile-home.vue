@@ -2,7 +2,7 @@
     <div class="container">
             <div class="wrapper">
 
-                <img src="../../img/logo.png" alt="" class="logo">
+                <img src="../../img/logo.png" alt="logo" class="logo">
                 <p class="description">Welcome to the Star Wars Galaxy Explorer experience.
                 <br>To pair your mobile phone with your computer, please enter the code in the following area.</p>
                 <form v-on:submit.prevent="onSubmit" class="form">
@@ -142,7 +142,6 @@ form :-moz-placeholder {
 
 .error
 {
-    transition: 0.5s;
     margin: 10px 50px;
     text-align: center;
     font-size: 14px;

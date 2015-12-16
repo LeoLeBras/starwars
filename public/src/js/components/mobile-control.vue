@@ -1,8 +1,7 @@
 <template>
     <div class="container">
-        <div class="wrapper">
-            <div class="ship"></div>
-        </div>
+        <img src="../../img/logo-small.svg" alt="logo" class="logo"/>
+        <img src="../../img/xwing.svg" alt="space ship" class="ship"/>
     </div>
 </template>
 
@@ -66,22 +65,34 @@
 
 <style scoped>
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-height: 100vh;
-        background: #f6b941;
-    }
+.container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+	height: 100vh;
+    background-image: url(../../img/back-mobile.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
 
-    .wrapper {
-        margin: auto;
-    }
+.logo
+{
+    display: block;
+    position: absolute;
+    top: 20px;
+    width: 125px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-    .ship {
-        margin-bottom: 1rem;
-        width: 4rem;    height: 14rem;
-        background-color: #7b5c20;
-    }
+.ship
+{
+    width: calc(150px + 10%);
+    margin: auto;
+    display: block;
+}
 
 </style>
