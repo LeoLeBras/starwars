@@ -74,8 +74,9 @@
     text-align: center;
 }
 
-.logo{
-    width: 350px;
+.logo
+{
+    width: 275px;
     position: relative;
     display: block;
     margin: auto;
@@ -83,7 +84,7 @@
 
 .description
 {
-    margin-top: 125px;
+    margin-top: 6%;
     margin-bottom: 5px;  
 }
 
@@ -119,7 +120,7 @@
 {
     width: 200px;
     height: 100px;
-    margin: 100px auto 0px;
+    margin: 6% auto 0px;
     position: relative;
 }
 
