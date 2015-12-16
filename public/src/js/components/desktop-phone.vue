@@ -135,8 +135,47 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%) scale(1);
     animation: bounce 10s ease infinite;
+}
+
+@keyframes bounce
+{
+    0%   {transform: translateX(-50%) translateY(-50%) scale(1);}
+    20%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+
+    21%  {transform: translateX(-50%) translateY(-50%) scale(1.3);}
+    22%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+    23%  {transform: translateX(-50%) translateY(-50%) scale(1.6);}
+    24%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+    25%  {transform: translateX(-50%) translateY(-50%) scale(1.9);}
+    26%  {transform: translateX(-50%) translateY(-50%) scale(1.2);}
+    27%  {transform: translateX(-50%) translateY(-50%) scale(1.5);}
+    28%  {transform: translateX(-50%) translateY(-50%) scale(1.1);}
+    29%  {transform: translateX(-50%) translateY(-50%) scale(1.6);}
+
+    30%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+    31%  {transform: translateX(-50%) translateY(-50%) scale(1.5);}
+    32%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+
+    50%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+    70%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+
+    71%  {transform: translateX(-50%) translateY(-50%) scale(1.3);}
+    72%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+    73%  {transform: translateX(-50%) translateY(-50%) scale(1.6);}
+    74%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+    75%  {transform: translateX(-50%) translateY(-50%) scale(1.9);}
+    76%  {transform: translateX(-50%) translateY(-50%) scale(1.2);}
+    77%  {transform: translateX(-50%) translateY(-50%) scale(1.5);}
+    78%  {transform: translateX(-50%) translateY(-50%) scale(1.1);}
+    79%  {transform: translateX(-50%) translateY(-50%) scale(1.6);}
+
+    80%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+    81%  {transform: translateX(-50%) translateY(-50%) scale(1.5);}
+    82%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+
+    100% {transform: translateX(-50%) translateY(-50%) scale(1);}
 }
 
 .eclipse
@@ -162,43 +201,5 @@
     100% {transform: translateY(-50%) translateX(0);}
 }
 
-@keyframes bounce
-{
-    0%   {width: 50px; height: 50px;}
-    20%  {width: 50px; height: 50px;}
-
-    21%  {width: 53px; height: 53px;}
-    22%  {width: 50px; height: 50px;}
-    23%  {width: 56px; height: 56px;}
-    24%  {width: 50px; height: 50px;}
-    25%  {width: 59px; height: 59px;}
-    26%  {width: 52px; height: 52px;}
-    27%  {width: 55px; height: 55px;}
-    28%  {width: 51px; height: 51px;}
-    29%  {width: 56px; height: 56px;}
-
-    30%  {width: 50px; height: 50px;}
-    31%  {width: 55px; height: 55px;}
-    32%  {width: 50px; height: 50px;}
-
-    50%  {width: 50px; height: 50px;}
-    70%  {width: 50px; height: 50px;}
-
-    71%  {width: 53px; height: 53px;}
-    72%  {width: 50px; height: 50px;}
-    73%  {width: 56px; height: 56px;}
-    74%  {width: 50px; height: 50px;}
-    75%  {width: 59px; height: 59px;}
-    76%  {width: 52px; height: 52px;}
-    77%  {width: 55px; height: 55px;}
-    78%  {width: 51px; height: 51px;}
-    79%  {width: 56px; height: 56px;}
-
-    80%  {width: 50px; height: 50px;}
-    81%  {width: 55px; height: 55px;}
-    82%  {width: 50px; height: 50px;}
-
-    100% {width: 50px; height: 50px;}
-}
 
 </style>
