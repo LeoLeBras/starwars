@@ -5,13 +5,13 @@
                 <img src="../../img/logo.png" alt="logo" class="logo">
                 <p class="description">Welcome to the Star Wars Galaxy Explorer experience.
                 <br>To pair your mobile phone with your computer, please enter the code in the following area.</p>
+                <div v-if="error" class="error">
+                    Pairing failed, please try again.
+                </div>
                 <form v-on:submit.prevent="onSubmit" class="form">
                     <input type="text" class="input" v-model="key" placeholder="Enter the code">
                     <button type="submit" class="submit"></button>
                 </form>
-                <div v-if="error" class="error">
-                    Pairing failed, please try again.
-                </div>
 
             </div>
     </div>
@@ -103,7 +103,7 @@
     height: 50px;
     line-height: 48px;
     width: 250px;
-    margin: 50px auto 0;
+    margin: 10px auto 10px;
     position: relative;
 }
 
@@ -142,7 +142,7 @@ form :-moz-placeholder {
 
 .error
 {
-    margin: 10px 50px;
+    margin: 50px 50px;
     text-align: center;
     font-size: 14px;
 }
