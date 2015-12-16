@@ -91,9 +91,21 @@
 
 .description
 {
-    margin: 0px 50px;
+    width: 275px;
+    margin: auto;
     text-align: center;
     font-size: 14px;
+}
+
+.error
+{
+    width: 275px;
+    margin: 50px auto 0px;
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .form
@@ -103,7 +115,7 @@
     height: 50px;
     line-height: 48px;
     width: 250px;
-    margin: 10px auto 10px;
+    margin: 80px auto 10px;
     position: relative;
 }
 
@@ -140,11 +152,5 @@ form :-moz-placeholder {
     opacity: 0.5;
 }
 
-.error
-{
-    margin: 50px 50px;
-    text-align: center;
-    font-size: 14px;
-}
 
 </style>
