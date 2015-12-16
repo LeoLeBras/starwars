@@ -24,3 +24,23 @@ export const drawCircle = (c, x, y, size, color) => {
 export const clearCanvas = (c) => {
     c.clearRect(0, 0, c.canvas.width, c.canvas.height);
 };
+
+
+
+/*
+ * Clear coordinates
+ *
+ * @param {int} x
+ * @param {int} y
+ * @return {object} y
+ */
+export const clearCoordinates = (x, y, maxX, maxY) => {
+    x %= maxX;
+    y %= maxY;
+    if(x < 0) x += maxX;
+    if(y < 0) y += maxY;
+
+    return {
+        x, y
+    };
+};

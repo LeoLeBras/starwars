@@ -2,9 +2,9 @@
     <div class="container">
         <div class="logo"></div>
         <canvas class="canvas"></canvas>
-        <div class="ship"></div>
+        <div class="xwing"></div>
         <div class="info">
-            rotation: {{ ship.rotation }}
+            rotation: {{ xwing.rotation }}
         </div>
         <div class="gyro"></div>
     </div>
@@ -15,7 +15,7 @@
     import gyro from 'gyro'; // gyroscope
     import dynamics from 'dynamics.js'; // animtion
     import { select, css } from 'dom';
-    import { clearCanvas, drawCircle } from 'canvas';
+    import { clearCanvas, drawCircle, clearCoordinates } from 'canvas';
 
     const socket = io();
 
@@ -28,10 +28,11 @@
          *   - {DOM} canvas
          *   - {integer} canvasWidth
          *   - {integer} canvasHeight
-         *   - {integer} canvasCenterX
-         *   - {integer} canvasCenterY
-         *   - {object} ship
+         *   - {integer} territoryWidth
+         *   - {integer} territoryHeight
+         *   - {object} xwing
          *   - {array} stars
+         *   - {array} planets
          *
          * @return {object}
          */
@@ -41,30 +42,52 @@
             const canvasWidth = window.innerWidth;
             const canvasHeight = window.innerHeight;
 
-            // Create stars
+            // Set territoryWidth and territoryHeight
+            const territoryWidth = 6000;
+            const territoryHeight = 4000;
+
+            // Create stars (random)
             let stars = [];
-            for (let i = 0; i < 40; i++) {
+            for (let i = 0; i < 500; i++) {
                 stars = [...stars, {
-                    x: Math.floor(Math.random() * canvasWidth),
-                    y: Math.floor(Math.random() * canvasHeight),
+                    x: Math.floor(Math.random() * territoryWidth),
+                    y: Math.floor(Math.random() * territoryHeight),
                     z: (Math.random() * (1.2 - 0.1) + 0.1).toFixed(1)
                 }];
             }
 
+            // Create planets
+            const planetSize = 300;
+            let planets = ['Naboo', 'Tatooine'], img;
+            planets = planets.map(planet => {
+                img = document.createElement('img');
+                img.src = `../../img/planet-${planet}.png`;
+
+                return {
+                    name: planet,
+                    x: canvasWidth / 2 - planetSize / 2,
+                    y: canvasHeight / 2 - planetSize / 2,
+                    source: img,
+                    loaded: false,
+                    size: planetSize
+                };
+            })
+
             // Return data
             return {
                 canvas: document.querySelector('.canvas'),
-                canvasWidth: window.innerWidth,
-                canvasHeight: window.innerHeight,
-                canvasCenterX: canvasHeight / 2,
-                canvasCenterY: canvasHeight / 2,
-                ship: {
+                canvasWidth,
+                canvasHeight,
+                territoryWidth,
+                territoryHeight,
+                xwing: {
                     x: canvasWidth / 2,
                     y: canvasHeight / 2,
                     rotation: 0,
                     speed: 5
                 },
-                stars: stars
+                stars,
+                planets
             };
 
         },
@@ -83,11 +106,11 @@
                 if(response.headers.client == key) { // Test the key
 
                     // Set rotation
-                    this.ship.rotation = response.data.rotation;
+                    this.xwing.rotation = response.data.rotation;
 
-                    // Rotate .ship
-                    dynamics.animate(document.querySelector('.ship'), {
-                        rotateZ: `${this.ship.rotation}deg`,
+                    // Rotate .xwing
+                    dynamics.animate(document.querySelector('.xwing'), {
+                        rotateZ: `${this.xwing.rotation}deg`,
                     }, {
                         frequency: 300,
                         friction: 300,
@@ -95,6 +118,16 @@
                     });
 
                 }
+            });
+
+            // Wait loading planets
+            this.planets.map((planet, i) => {
+                planet.source.onload = () => {
+                    this.planets[i] = {
+                        ...planet,
+                        loaded: true
+                    };
+                };
             });
 
             // Initialyze the canvas
@@ -111,36 +144,37 @@
                 window.requestAnimationFrame(render);
                 clearCanvas(c);
 
-                // Set constants
-                const speed = this.ship.speed;
-                const rotation = this.ship.rotation;
+                // Move elements
+                const speed = this.xwing.speed;
+                const rotation = this.xwing.rotation;
+                let addX = 0,
+                addY = 0;
+                if(rotation == 0) {
+                    addY = -speed;
+                }
+                else {
+                    addY = -(Math.cos(rotation * (Math.PI / 180)) * speed);
+                    addX = -(Math.sqrt(Math.pow(speed, 2) - Math.pow(addY, 2)));
 
-                // Parse stars
-                this.stars.map((star, i) => {
-                    let addX = 0,
-                        addY = 0;
-
-                    if(rotation == 0) {
-                        addY = -speed;
+                    if(rotation > 0) {
+                        addX = -addX;
                     }
-                    else {
-                        addY = -(Math.cos(rotation * (Math.PI / 180)) * speed);
-                        addX = -(Math.sqrt(Math.pow(speed, 2) - Math.pow(addY, 2)));
+                }
 
-                        if(rotation > 0) {
-                            addX = -addX;
-                        }
-                    }
 
-                    // Update x and y
-                    this.stars[i].x = (star.x + addX * star.z) % this.canvasWidth;
-                    this.stars[i].y = (star.y + addY * star.z) % this.canvasHeight;
 
-                    // The universe is infinite !! :)
-                    if(this.stars[i].x < 0)
-                        this.stars[i].x += this.canvasWidth;
-                    if(this.stars[i].y < 0)
-                        this.stars[i].y += this.canvasHeight;
+                /*
+                 * Draw stars
+                 *
+                 * @param {object} star
+                 * @return {object}
+                 */
+                this.stars = this.stars.map(star => {
+
+                    // Set coordinates
+                    let coordinates = clearCoordinates(star.x + addX * star.z, star.y + addY * star.z, this.territoryWidth, this.territoryHeight);
+                    let x = coordinates.x,
+                        y = coordinates.y;
 
                     // Set shadow
                     c.shadowColor   = 'white';
@@ -149,11 +183,57 @@
                     c.shadowBlur    = 5;
 
                     // Draw
-                    drawCircle(c, this.stars[i].x , this.stars[i].y, 5 * star.z, 'white')
+                    drawCircle(c, x , y, 5 * star.z, 'white')
+
+                    return {
+                        ...star,
+                        x,
+                        y
+                    };
 
                 });
+
+
+
+                /*
+                 * Draw planets
+
+                 * @param {object} planet
+                 * @return {object}
+                 */
+                this.planets = this.planets.map(planet => {
+
+                    // Set coordinates
+                    let coordinates = clearCoordinates(planet.x + addX, planet.y + addY, this.territoryWidth, this.territoryHeight);
+                    let x = coordinates.x,
+                        y = coordinates.y;
+
+                    if(planet.loaded) // If the img is loaded, draw the image
+                        c.drawImage(planet.source, 0, 0, planet.source.width, planet.source.height, x, y, planet.size, planet.size);
+
+                    return {
+                        ...planet,
+                        x,
+                        y
+                    };
+                });
+
+
+
+                // The x-Wing is next to a planet
+                const xwing = this.xwing;
+                this.planets.map(planet => {
+                    if(Math.sqrt(Math.pow(xwing.x - planet.x, 2) + Math.pow(planet.y - xwing.y, 2)) < planet.size) {
+                        console.log('Fuck yeah !');
+                    }
+                });
+
             };
 
+
+
+
+            // Go render !!!!
             render();
 
         }
@@ -173,7 +253,15 @@
         background-size: cover;
     }
 
-    .ship {
+    .logo {
+        position: absolute;
+        top: 30px;  left: 30px;
+        width: 90px;    height: 40px;
+        background-image: url('../../img/logo-small-fillWhite.svg');
+        background-size: cover;
+    }
+
+    .xwing {
         margin: auto;
         width: 103px;    height: 117px;
         background-image: url('../../img/xwing.svg');
