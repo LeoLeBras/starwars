@@ -65,34 +65,31 @@
 
 <style scoped>
 
-.container
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100vw;
-	height: 100vh;
-    background-image: url(../../img/back-mobile.jpg);
-    background-position: center;
-    background-size: cover;
-    position: relative;
-}
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100vw;
+    	height: 100vh;
+        background-image: url(../../img/back-mobile.jpg);
+        background-position: center;
+        background-size: cover;
+        position: relative;
+    }
 
-.logo
-{
-    display: block;
-    position: absolute;
-    top: 20px;
-    width: 125px;
-    left: 50%;
-    transform: translateX(-50%);
-}
+    .logo {
+        display: block;
+        position: absolute;
+        top: 20px;
+        width: 125px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 
-.ship
-{
-    width: calc(150px + 10%);
-    margin: auto;
-    display: block;
-}
+    .ship {
+        display: block;
+        margin: auto;
+        width: calc(150px + 10%);
+    }
 
 </style>
