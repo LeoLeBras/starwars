@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-            <div class="wrapper">
+        <div class="wrapper">
 
                 <img src="../../img/logo.png" alt="logo" class="logo">
                 <p class="description">Welcome to the Star Wars Galaxy Explorer experience.
@@ -13,7 +13,7 @@
                     Pairing failed, please try again.
                 </div>
 
-        </div>
+            </div>
     </div>
 </template>
 
@@ -67,20 +67,19 @@
 
 .container
 {
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 100vh;
     background-image: url(../../img/back-mobile.jpg);
     background-position: center;
     background-size: cover;
     color: #ffffff;
-    position: absolute;
 }
 
 .wrapper
 {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    width: 100%;
+    height: 100%;
+    padding-top: 30px;
 }
 
 .logo
