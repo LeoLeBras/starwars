@@ -1,24 +1,37 @@
 <template>
-    <!-- html -->
-
     <div class="container">
-
         <img src="../../img/logo.png" alt="" class="logo">
-
         <p class="description">Welcome to the Star Wars Galaxy Explorer experience.
         <br>To pair your mobile phone with your computer, please enter the code in the following area.</p>
-
         <form v-on:submit.prevent="onSubmit" class="form">
             <input type="text" class="input" v-model="key" placeholder="Enter the code">
             <button type="submit" class="submit"></button>
         </form>
-
+        <div v-if="error">
+            Erreur
+        </div>
     </div>
-
 </template>
 
 <script>
     export default {
+
+        /*
+         * data()
+         *
+         * Set initial state :
+         *   - {bool} erro
+         *
+         * @return {object}
+         */
+        data() {
+            return {
+                error: false
+            }
+        },
+
+
+
         methods: {
 
             /*
@@ -33,11 +46,13 @@
                 });
 
                 socket.on('connectDevice', response => {
-                    this.$route.router.go({
+                    return this.$route.router.go({
                         path: '/control',
                         query: { key: response.data.key }
                     });
                 });
+
+                this.error = true;
             }
 
         }
