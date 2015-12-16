@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <img src="../../img/logo-small.svg" alt="logo" class="logo"/>
-        <img src="../../img/xwing.svg" alt="space ship" class="ship"/>
+        <img src="../../img/logo-small.svg" alt="Star Wars" class="logo"/>
+        <img src="../../img/xwing.svg" alt="The ship" class="ship"/>
     </div>
 </template>
 
@@ -12,7 +12,7 @@
 
     const socket = io();
     const duration = 500; // (animation)
-    const maxRotation = 45
+    const maxRotation = 70
 
     export default {
 
@@ -32,7 +32,7 @@
                 if(Math.abs(rotation) > maxRotation)
                     rotation = maxRotation * (rotation / Math.abs(rotation));
 
-                if(Math.abs(rotation - lastRotation) > 5) {
+                if(Math.abs(rotation - lastRotation) > 4) {
 
                     // Send socket
                     socket.emit('handleRotation', {
@@ -49,8 +49,8 @@
                     dynamics.animate(document.querySelector('.ship'), {
                         rotateZ: `${rotation}deg`,
                     }, {
-                        frequency: 300,
-                        friction: 300,
+                        frequency: 500,
+                        friction: 500,
                         duration: duration
                     });
 
@@ -74,15 +74,16 @@
         background-image: url(../../img/back-mobile.jpg);
         background-position: center;
         background-size: cover;
-        position: relative;
+        overflow-x: hidden;
+        overflow-y: hidden;
     }
 
     .logo {
         display: block;
         position: absolute;
         top: 20px;
-        width: 125px;
         left: 50%;
+        width: 125px;
         transform: translateX(-50%);
     }
 
