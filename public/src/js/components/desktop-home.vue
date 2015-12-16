@@ -2,7 +2,7 @@
     <div class="container">
             <img src="../../img/logo.png" alt="logo" class="logo"/>
             <p class="description">
-                Welcome to Star Wars : The Galaxy Explorer. Discover every data about planets, species and space ships. <br>For the best possible experience, pair your smartphone to your computer by visiting <br> www.starwars.com
+                Welcome to Star Wars : The Galaxy Explorer. In here, you will have to navigate your way through the galaxy and find extraordinary planets. There, you will find amazing data about planets, species and even space ships. <br>For the best possible experience, we advise you to navigate through the experience with you smartphone. <br> Hoping you will enjoy your trip, we'll see you on the other side, young padawan !
             </p>
             <p class="mode">
                 Choose your navigation mode.
