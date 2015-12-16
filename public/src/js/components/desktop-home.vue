@@ -28,7 +28,7 @@
     flex-direction: column;
     justify-content: center;*/
     min-height: 100vh;
-    background-image: url(../../img/back2.jpg);
+    background-image: url(../../img/back3.jpg);
     background-position: center center;
     background-size: cover;
     color: white;
