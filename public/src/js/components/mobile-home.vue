@@ -67,12 +67,13 @@
 
 .container
 {
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
     background-image: url(../../img/back-mobile.jpg);
     background-position: center;
     background-size: cover;
     color: #ffffff;
+    position: absolute;
 }
 
 .wrapper
