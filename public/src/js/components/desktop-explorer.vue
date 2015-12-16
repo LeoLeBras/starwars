@@ -36,7 +36,7 @@
             const canvasHeight = window.innerHeight;
 
             return {
-                territoryWidth: ,
+                territoryWidth: 200,
                 canvas: document.querySelector('.canvas'),
                 canvasWidth: window.innerWidth,
                 canvasHeight: window.innerHeight,
