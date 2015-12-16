@@ -68,7 +68,7 @@
 .container
 {
 	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
     background-image: url(../../img/back-mobile.jpg);
     background-position: center;
     background-size: cover;
