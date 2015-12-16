@@ -1,19 +1,17 @@
 <template>
-    <canvas class="canvas"></canvas>
     <div class="container">
-        <div class="wrapper">
-            <div class="ship"></div>
-        </div>
+        <canvas class="canvas"></canvas>
+        <div class="ship"></div>
     </div>
 </template>
 
 <script>
 
-    import { select, css } from 'dom';
-    import { clearCanvas, drawCircle } from 'canvas';
-
     import gyro from 'gyro'; // gyroscope
     import dynamics from 'dynamics.js'; // animtion
+    import { select, css } from 'dom';
+    import { clearCanvas } from 'canvas';
+
     const socket = io();
 
     export default {
@@ -26,7 +24,7 @@
          *   - {integer} canvasWidth
          *   - {integer} canvasHeight
          *   - {integer} canvasCenterX
-         *   - {integer} canvasCenterY
+         *   - {integer} xcanvasCenterY
          *   - {object} ship
          *
          * @return {object}
@@ -76,12 +74,9 @@
             canvas.width  = this.canvasWidth;
             canvas.height = this.canvasHeight;
 
-
             const render = () => {
                 window.requestAnimationFrame(render);
                 clearCanvas(c);
-                this.ship.y = this.ship.y - 1;
-                drawCircle(c, this.ship.x, this.ship.y, 10, 'black');
             };
 
             render();
@@ -94,6 +89,7 @@
 
 <style scoped>
 
+
     .container {
         display: flex;
         flex-direction: column;
@@ -102,14 +98,14 @@
         background: #f6b941;
     }
 
-    .wrapper {
+    .ship {
         margin: auto;
+        width: 1rem;    height: 3rem;
+        background-color: #7b5c20;
     }
 
-    .ship {
-        margin-bottom: 1rem;
-        width: 4rem;    height: 14rem;
-        background-color: #7b5c20;
+    .canvas {
+        position: absolute;
     }
 
 </style>
