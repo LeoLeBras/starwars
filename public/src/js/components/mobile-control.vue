@@ -80,7 +80,7 @@
 
                  setTimeout(() => {
                      this.findPlanet = false;
-                 }, 3000)
+                 }, 5000)
              })
         }
 

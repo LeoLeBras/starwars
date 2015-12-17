@@ -175,15 +175,20 @@
                     let x = coordinates.x,
                         y = coordinates.y;
 
-                    // Set shadow
-                    c.shadowColor   = 'white';
-                    c.shadowOffsetX = 0;
-                    c.shadowOffsetY = 1;
-                    c.shadowBlur    = 5;
+                    if(x < this.canvasWidth && y < this.canvasHeight) { // If the star is inside the canvas
 
-                    // Draw
-                    drawCircle(c, x , y, 5 * star.z, 'white')
+                        // Set shadow for stars
+                        c.shadowColor   = 'white';
+                        c.shadowOffsetX = 0;
+                        c.shadowOffsetY = 1;
+                        c.shadowBlur    = 5;
 
+                        // Draw
+                        drawCircle(c, x , y, 5 * star.z, 'white');
+
+                    }
+
+                    // Update
                     return {
                         ...star,
                         x,
@@ -207,8 +212,9 @@
                     let x = coordinates.x,
                         y = coordinates.y;
 
-                    if(planet.loaded) // If the img is loaded, draw the image
-                        c.drawImage(planet.source, 0, 0, planet.source.width, planet.source.height, x, y, planet.size, planet.size);
+                    // If the img is loaded and if the planet is inside the canvas, draw the image
+                    if(planet.loaded && x < this.canvasWidth && y < this.canvasHeight)
+                        c.drawImage(planet.source, 0, 0, planet.source.width, planet.source.height, x - (planet.size / 2), y - (planet.size), planet.size, planet.size);
 
                     return {
                         ...planet,
@@ -222,7 +228,7 @@
                 // The x-Wing is next to a planet
                 const xwing = this.xwing;
                 this.planets.map((planet, i) => {
-                    if(Math.sqrt(Math.pow(xwing.x - planet.x, 2) + Math.pow(planet.y - xwing.y, 2)) < planet.size) {
+                    if(Math.sqrt(Math.pow(xwing.x - planet.x, 2) + Math.pow(planet.y - xwing.y, 2)) < planet.size * 1.5) {
                         if(!planet.explore) {
                             console.log('explore');
                             socket.emit('findPlanet', {
