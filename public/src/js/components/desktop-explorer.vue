@@ -213,7 +213,7 @@
                         y = coordinates.y;
 
                     // If the img is loaded and if the planet is inside the canvas, draw the image
-                    if(planet.loaded && x < this.canvasWidth && y < this.canvasHeight)
+                    if(planet.loaded && x < (this.canvasWidth + planet.size ) && y < (this.canvasHeight + planet.size))
                         c.drawImage(planet.source, 0, 0, planet.source.width, planet.source.height, x - (planet.size / 2), y - (planet.size), planet.size, planet.size);
 
                     return {
