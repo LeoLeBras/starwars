@@ -153,8 +153,8 @@
                     addY = -speed;
                 }
                 else {
-                    addY = -(Math.cos(rotation * (Math.PI / 180)) * speed);
-                    addX = -(Math.sqrt(Math.pow(speed, 2) - Math.pow(addY, 2)));
+                    addY = Math.cos(rotation * (Math.PI / 180)) * speed;
+                    addX = Math.sqrt(Math.pow(speed, 2) - Math.pow(addY, 2));
 
                     if(rotation > 0) {
                         addX = -addX;
