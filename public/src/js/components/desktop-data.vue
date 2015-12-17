@@ -80,7 +80,7 @@
                     if(planet.water >= 50) {
                         waterPer = 'big';
                     }
-                    else if (water < 50 && water >= 5) {
+                    else if (planet.water < 50 && planet.water >= 5) {
                         waterPer = 'small';
                     }
                     else {
