@@ -10,12 +10,12 @@ app.use(express.static(__dirname + '/public/__build__/'));
 
 io.on('connection', (socket) => {
 
-	// Create a user
-	socket.on('createUser', (data) => users = [...users, data.key]);
+    // Create a user
+    socket.on('createUser', (data) => users = [...users, data.key]);
 
-	// Connect the smartphone and the desktop
-	socket.on('findConnection', (data) => {
-		let index = users.indexOf(parseInt(data.key));
+    // Connect the smartphone and the desktop
+    socket.on('findConnection', (data) => {
+	    let index = users.indexOf(parseInt(data.key));
 		if(index !== -1) {
 			users = users.slice(index, 1); // Remove user
 			io.emit('connectDevice', {
@@ -30,13 +30,11 @@ io.on('connection', (socket) => {
 		}
 	});
 
-	// Handle rotation of the device
+    // Handle rotation of the device
 	socket.on('handleRotation', (data) => {
-		socket.broadcast.emit('handleRotation', data);
+        socket.broadcast.emit('handleRotation', data);
 	});
 
 });
 
 console.log('Your server is running on http://localhost:' + port);
-
-// http://stackoverflow.com/questions/10058226/send-response-to-all-clients-except-sender-socket-io

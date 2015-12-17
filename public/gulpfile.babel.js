@@ -83,10 +83,15 @@ gulp.task('js', () => {
         entry = { ...entry, [item]: `${config.dir.srcDir}${config.dir.jsDir}${item}` };
     });
 
-    let vueLoader = {};
+    let vueLoader = {
+        autoprefixer: {
+            browsers: ['last 30 versions']
+        }
+    };
     if(!argv.argv.watch) {
         vueLoader = {
-            css: ExtractTextPlugin.extract('style-loader', 'css-loader', 'stylus-loader'),
+            ...vueLoader,
+            css: ExtractTextPlugin.extract('style-loader!css-loader')
         };
     }
 

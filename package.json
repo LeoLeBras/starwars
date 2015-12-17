@@ -15,14 +15,13 @@
     "type": "git",
     "url": "git+https://github.com/LeoLeBras/starwars.git"
   },
-  "author": "",
+  "author": "Léo LE BRAS",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/LeoLeBras/starwars/issues"
   },
   "homepage": "https://github.com/LeoLeBras/starwars#readme",
   "dependencies": {
-    "autoprefixer": "^6.1.1",
     "babel-core": "^6.2.1",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.0",
@@ -53,6 +52,7 @@
     "image-webpack-loader": "^1.6.2",
     "json-loader": "^0.5.4",
     "postcss-font-magician": "^1.3.0",
+    "postcss-loader": "^0.8.0",
     "socket.io": "^1.3.7",
     "socket.io-client": "^1.3.7",
     "style-loader": "^0.13.0",
