@@ -61,7 +61,7 @@
             let img;
             let planets = planetsJSON.map(planet => {
                 img = document.createElement('img');
-                img.src = `../../img/planet-${planet}.png`;
+                img.src = `../../img/planet-${planet.name}.png`;
 
                 return {
                     ...planet,
