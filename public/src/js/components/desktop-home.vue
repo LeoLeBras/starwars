@@ -33,7 +33,6 @@
 .logo{
     width: 275px;
     height: 135px;
-    position: relative;
     display: block;
     margin: auto;
     background-image: url(../../img/logo.png);
