@@ -19,7 +19,7 @@ router.map({
     '/explorer': {
         component: Explorer
     },
-    '/data': {
+    '/data/:planet': {
         component: Data
     }
 });

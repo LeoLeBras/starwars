@@ -24,5 +24,7 @@
     "name": "Tatooine",
     "x": 3768,
     "y": 2311,
-    "size": 379
+    "size": 379,
+    "water": 8,
+    "population": "200.000"
 }]

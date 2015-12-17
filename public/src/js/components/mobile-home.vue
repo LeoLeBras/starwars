@@ -65,7 +65,7 @@
     }
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
 
     .container {
         display: flex;
@@ -127,18 +127,11 @@
         vertical-align: middle;
         width: 90%;
         text-align: center;
-    }
-
-    form ::-webkit-input-placeholder {
         padding-left: 10px;
-        text-align: center;
-        color: white;
-    }
 
-    form :-moz-placeholder {
-        padding-left: 10px;
-        text-align: center;
-        color: white;
+        &::placeholder {
+            color: white;
+        }
     }
 
     .submit {

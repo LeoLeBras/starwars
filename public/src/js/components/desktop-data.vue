@@ -1,24 +1,21 @@
 <template>
     <div class="container">
-        <div class="logo">
-        </div>
-
+        <div class="logo"></div>
         <div class="wrapper">
-
-            <div class="planet-tatooine"></div>
-            <div class="round-1"></div>
-            <div class="round-2"></div>
-            <div class="round-3"></div>
+            <div class="planet" v-bind:style="{ backgroundImage:  'url(img/planet-' + name + '.png)' }"></div>
+            <div class="round round-1"></div>
+            <div class="round round-2"></div>
+            <div class="round round-3"></div>
             <div class="data-slider">
-            	<div class='alfa' title='one'>
-                	<div class='bravo' title='two'>
+            	<div class='real' v-bind:style="{ backgroundImage: 'url(img/img-' + name.toLowerCase() + 'Real.jpg)' }">
+                	<div class='film' v-bind:style="{ backgroundImage:  'url(img/img-' + name.toLowerCase() + 'Film.jpg)' }">
                     	<textarea readonly cols='0' rows='0' class='charly'></textarea>
                 	</div>
             	</div>
             </div>
-            <div class="data-resident">
-            	Population
-            	<br>200 000
+            <div class="data-resident" v-bind:style="{ backgroundImage:  'url(img/graph-' + name + '.svg)' }">
+            	Population<br>
+                {{ population }}
             </div>
             <div class="data-chapter">
 				<svg width="232px" height="232px" viewBox="0 0 232 232" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
@@ -47,254 +44,253 @@
 				    </g>
 				</svg>
             </div>
-            <div class="data-water">
-	            <div class="wave"></div>
-            	There is
-            	<br>8%
-            	<br> water on this planet.
+            <div class="data-water" v-bind:style="{ backgroundPosition: '0 110px' }">
+            	There is<br>
+                {{ water }}%<br>
+                water on this planet.
             </div>
-
         </div>
-
     </div>
 </template>
 
-<style scoped>
+<script>
 
-.container {
-    /*display: flex;
-    flex-direction: column;
-    justify-content: center;*/
-    min-height: 100vh;
-    background-image: url(../../img/back3.jpg);
-    background-position: center center;
-    background-size: cover;
-    color: white;
-    text-align: center;
-}
+    import planets from 'api/planets.json';
 
-.logo{
-    width: 117px;
-    height: 50px;
-    display: block;
-    margin: auto;
-    background-image: url(../../img/logo-small.svg);
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
+    export default {
 
-.wrapper
-{
-	position: relative;
-	width: 1000px;
-	height: 1000px;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) rotate(0deg);
-	animation: wrapper-rotate 30s linear infinite ;
-}
+        /*
+         * data()
+         *
+         * Set initial state :
+         *   - {integer} population
+         *   - {integer} water
+         *   - {string} name
+         *
+         * @return {object}
+         */
+        data() {
+            const param = this.$route.params.planet;
+            let informations;
 
-@keyframes wrapper-rotate
-{
-	0%	 {transform: translateX(-50%) rotate(0deg);}
-	100% {transform: translateX(-50%) rotate(360deg);}
-}
+            planets.map(planet => {
+                if(planet.name.toLowerCase() == param) {
+                    informations = planet;
+                }
+            });
+
+            return informations;
+        },
+
+    }
+
+</script>
+
+<style lang="sass" scoped>
+
+    .container {
+        min-height: 100vh;
+        background-image: url('../../img/back3.jpg');
+        background-position: center center;
+        background-size: cover;
+        color: white;
+        text-align: center;
+    }
+
+    .logo{
+        display: block;
+        position: absolute;
+        top: 20px;  left: 20px;
+        width: 105px;   height: 46px;
+        background-image: url('../../img/logo-small.svg');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .wrapper {
+    	position: relative;
+    	width: 1000px;
+    	height: 1000px;
+    	top: 50%;
+    	left: 50%;
+    	transform: translateX(-50%) rotate(0deg);
+    	animation: wrapper-rotate 30s linear infinite ;
+    }
+
+    @keyframes wrapper-rotate {
+    	0%	 {transform: translateX(-50%) rotate(0deg);}
+    	100% {transform: translateX(-50%) rotate(360deg);}
+    }
+
+    .planet {
+        width: 300px;
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    .round {
+        position: absolute;
+        left: 50%;  top: 50%;
+        border: 2px solid rgba(white, .25);
+        border-radius: 100%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    .round-1 {
+    	width: 500px;
+    	height: 500px;
+    }
+
+    .round-2 {
+    	width: 700px;
+    	height: 700px;
+    }
+
+    .round-3 {
+    	width: 900px;
+    	height: 900px;
+    }
+
+    .data-slider
+    {
+    	position: absolute;
+    	top: 80px;
+    	left: 515px;
+    	animation: rotate-slider 30s linear infinite;
+    }
+
+    @keyframes rotate-slider
+    {
+    	0%	 {transform: rotate(0deg);}
+    	100% {transform: rotate(-360deg);}
+    }
 
 
-.planet-tatooine
-{
-    width: 300px;
-    height: 300px;
-    background-image: url(../../img/planet-Tatooine.png);
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-}
+    .data-resident
+    {
+    	position: absolute;
+    	background-size: cover;
+    	background-position: center;
+    	width: 160px;
+    	height: 160px;
+    	top: 665px;
+    	left: 50%;
+    	transform: translateX(-50%) rotate(0deg);
+    	text-align: center;
+    	padding: 45px 0px;
+    	animation: rotate-resident 30s linear infinite;
+    }
 
-.round-1
-{
-	width: 500px;	
-	height: 500px;
-	position: absolute;
-	border-radius: 100%;
-	border: 2px solid grey;
-	top: 50%;
-	left: 50%;
-    transform: translateX(-50%) translateY(-50%); 
-}
+    @keyframes rotate-resident
+    {
+    	0%	 {transform: translateX(-50%) rotate(0deg);}
+    	100% {transform: translateX(-50%) rotate(-360deg);}
+    }
 
-.round-2
-{
-	width: 700px;	
-	height: 700px;
-	position: absolute;
-	border-radius: 100%;
-	border: 2px solid grey;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);	
-}
+    .data-chapter
+    {
+    	position: absolute;
+    	width: 175px;
+    	height: 175px;
+    	top: 200px;
+    	left: 820px;
+    	animation: rotate-chapter 30s linear infinite;
+    }
 
-.round-3
-{
-	width: 900px;	
-	height: 900px;
-	position: absolute;
-	border-radius: 100%;
-	border: 2px solid grey;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);		
-}
+    @keyframes rotate-chapter
+    {
+    	0%	 {transform: rotate(0deg);}
+    	100% {transform: rotate(-360deg);}
+    }
 
-.data-slider
-{
-	position: absolute;
-	top: 80px;
-	left: 515px;
-	animation: rotate-slider 30s linear infinite;
-}
+    .data-chapter svg
+    {
+    	width: 100%;
+    }
 
-@keyframes rotate-slider
-{
-	0%	 {transform: rotate(0deg);}
-	100% {transform: rotate(-360deg);}
-}
+    .data-water
+    {
+    	width: 150px;
+    	height: 150px;
+    	border-radius: 100%;
+    	border: 2px solid white;
+    	position: absolute;
+    	top: 500px;
+    	left: 85px;
+    	padding-top: 20px;
+    	background-image: url(../../img/wave.png);
+    	background-repeat: repeat-x;
+    	background-size: 150px;
+    	animation: waving 3s linear infinite, water-rotate 30s linear infinite;
+    }
+
+    @keyframes waving
+    {
+    	0% { background-position: 0px 110px; }
+    	100% { background-position: 300px 110px; }
+    }
+
+    @keyframes water-rotate
+    {
+    	0%	 {transform: rotate(0deg);}
+    	100% {transform: rotate(-360deg);}
+    }
 
 
-.data-resident
-{
-	position: absolute;
-	background-image: url(../../img/DataResidentTatooine.svg);
-	background-size: cover;
-	background-position: center;
-	width: 160px;
-	height: 160px;
-	top: 665px;
-	left: 50%;
-	transform: translateX(-50%) rotate(0deg);
-	text-align: center;
-	padding: 45px 0px;
-	animation: rotate-resident 30s linear infinite;
-}
+    /** *** **/
 
-@keyframes rotate-resident
-{
-	0%	 {transform: translateX(-50%) rotate(0deg);}
-	100% {transform: translateX(-50%) rotate(-360deg);}
-}
 
-.data-chapter
-{
-	position: absolute;
-	width: 175px;
-	height: 175px;
-	top: 200px;
-	left: 820px;
-	animation: rotate-chapter 30s linear infinite;
-}
+    .real {
+        position: relative;
+        overflow: hidden;
+        margin: 1rem auto;
+        width: 150px;   height: 150px;
+        padding: 0;
+        border: 2px solid #ffffff;
+        border-radius: 100%;
+        box-shadow: 0 0 1px #999, -2px 2px 3px rgba(0,0,0,.2);
+    }
 
-@keyframes rotate-chapter
-{
-	0%	 {transform: rotate(0deg);}
-	100% {transform: rotate(-360deg);}
-}
+    .film {
+        height: 150px;
+        resize: horizontal;
+        position: absolute;
+        top: 0; left: 0;
+        min-width: 0;
+        max-width: 800px;
+        box-sizing: border-box;
 
-.data-chapter svg
-{
-	width: 100%;
-}
+        &:before {
+            content: '-';
+            background: rgba(0,0,0,.7);
+            font-size: 18px;
+            color: white;
+            top: 0; right: 0px;
+            height: 100%;
+            line-height: 486px;
+            position: absolute;
+        }
+    }
 
-.data-water
-{
-	width: 150px;
-	height: 150px;
-	border-radius: 100%;
-	border: 2px solid white;
-	position: absolute;
-	top: 500px;
-	left: 85px;
-	padding-top: 20px;
-	background-image: url(../../img/wave.png);
-	background-position: 0px 110px;
-	background-repeat: repeat-x;
-	-webkit-background-size: contain;
-	background-size: contain;
-	animation: waving 3s linear infinite, water-rotate 30s linear infinite;
-}
-
-@keyframes waving
-{
-	0% { background-position: 0px 110px; }
-	100% { background-position: 300px 110px; }
-}
-
-@keyframes water-rotate
-{
-	0%	 {transform: rotate(0deg);}
-	100% {transform: rotate(-360deg);}	
-}
-
-/*
-SLIDER 2 BETTER*/
-
-.alfa {
-    background-image: url(../../img/slider_tatooine_real.jpg);
-    width: 150px;
-    height: 150px;
-    border: 2px solid #ffffff;
-    border-radius: 100%;
-    box-shadow: 0 0 1px #999, -2px 2px 3px rgba(0,0,0,.2);
-    padding: 0;
-    margin: 1rem auto;
-    position: relative;
-    overflow: hidden;
-}
-
-.bravo {
-    background-image: url(../../img/slider_tatooine_film.png);
-    height: 150px; 
-    resize: horizontal;
-    position: absolute;
-    top: 0; left: 0;
-    min-width: 0;
-    max-width: 800px;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.bravo:before {
-    content: '-';
-    background: rgba(0,0,0,.7);
-    font-size: 18px;
-    color: white;
-    top: 0; right: 0px;
-    height: 100%;
-    line-height: 486px;
-    position: absolute;
-}
-
-.charly{
-    resize: horizontal;
-    opacity: 0;
-    position: relative;
-    top: 50%;
-    left: 0px;
-    margin-right: 0px;
-    width: 0px; height: 15px;
-    max-width: 794px; min-width: 15px;
-    outline: 0 solid transparent;
-    cursor: move;
-    cursor: all-scroll;
-    transform: scaley(35);
-    transform-origin: center center;
-}
-
+    .charly{
+        resize: horizontal;
+        opacity: 0;
+        position: relative;
+        top: 50%;
+        left: 0px;
+        margin-right: 0px;
+        width: 0px; height: 15px;
+        max-width: 794px; min-width: 15px;
+        outline: 0 solid transparent;
+        cursor: move;
+        cursor: all-scroll;
+        transform: scaley(35);
+        transform-origin: center center;
+    }
 
 </style>
