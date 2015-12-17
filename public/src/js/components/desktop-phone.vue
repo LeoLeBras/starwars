@@ -25,9 +25,6 @@
          * Set initial state :
          *   - {integer} key
          *
-         * @TODO The server must generate the key
-         *       and not the client (priority: 1)
-         *
          * @return {object}
          */
         data() {

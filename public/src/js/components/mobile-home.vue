@@ -58,7 +58,9 @@
                     });
                 });
 
-                this.error = true;
+                setTimeout(() => {
+                    return this.error = true;
+                }, 1000);
             }
 
         }
@@ -105,7 +107,7 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        margin: 50px auto 3px;
+        margin: 12px auto 0;
         width: 275px;
         color: #FFE81F;
         text-align: center;
@@ -114,7 +116,7 @@
 
     .form {
         position: relative;
-        margin: 35px auto 10px;
+        margin: 45px auto 10px;
         width: 250px;   height: 50px;
         border: 2px solid #FFE81F;
         border-radius: 30px;

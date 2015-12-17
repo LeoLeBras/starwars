@@ -15,10 +15,10 @@
 }, {
     "name": "Hoth",
     "x": 975,
-    "y": 948,
+    "y": 1148,
     "size": 302,
     "water": 100,
-    "population": "Fewer than 10"    
+    "population": "Fewer than 10"
 }, {
     "name": "Naboo",
     "x": 2707,

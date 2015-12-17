@@ -2,19 +2,16 @@
     <div class="container">
         <div class="logo"></div>
         <canvas class="canvas"></canvas>
-        <div class="xwing"></div>
+        <div v-bind:style="{ transform: 'rotate(' + xwing.rotation + 'deg)' }" class="xwing"></div>
         <div class="info">
             rotation: {{ xwing.rotation }}
         </div>
-        <div class="gyro"></div>
     </div>
 </template>
 
 <script>
 
-    import dynamics from 'dynamics.js'; // animtion
     import planetsJSON from 'api/planets.json';
-    import { select, css } from 'dom';
     import { clearCanvas, drawCircle, clearCoordinates } from 'canvas';
 
     const socket = io();
@@ -107,15 +104,6 @@
                     // Set rotation
                     this.xwing.rotation = response.data.rotation;
                     this.xwing.speed = response.data.speed;
-
-                    // Rotate .xwing
-                    dynamics.animate(document.querySelector('.xwing'), {
-                        rotateZ: `${this.xwing.rotation}deg`,
-                    }, {
-                        frequency: 300,
-                        friction: 300,
-                        duration: 500
-                    });
 
                 }
             });
@@ -257,9 +245,6 @@
 
             };
 
-
-
-
             // Go render !!!!
             render();
 
@@ -293,6 +278,7 @@
         width: 103px;    height: 117px;
         background-image: url('../../img/xwing.svg');
         background-size: cover;
+        transition: transform ease .5s;
     }
 
     .canvas {
@@ -302,14 +288,6 @@
 
     .info {
         color: white;
-    }
-
-    .gyro {
-        position: absolute;
-        bottom: 2rem;   right: 2rem;
-        width: 5rem;    height: 5rem;
-        background: white;
-        border-radius: 50%;
     }
 
 </style>

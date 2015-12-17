@@ -31,7 +31,6 @@
     "babel-preset-stage-0": "^6.1.18",
     "css-loader": "^0.23.0",
     "del": "^2.1.0",
-    "dynamics.js": "0.0.9",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^0.9.1",
     "gulp-babel": "^6.1.0",

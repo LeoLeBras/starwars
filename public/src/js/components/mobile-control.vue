@@ -121,6 +121,14 @@
                         planet: this.findPlanet
                     }
                 });
+
+                socket.emit('handle', {
+                    client: this.key,
+                    data: {
+                        rotation: this.rotation,
+                        speed: 0
+                    }
+                });
             }
 
         }
@@ -212,7 +220,7 @@
         background-image: url(../../img/xwing.svg);
         background-size: cover;
         background-position: center;
-        transition: all ease .5s;
+        transition: transform ease .5s;
         z-index: 1;
     }
 
