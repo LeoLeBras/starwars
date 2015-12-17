@@ -44,7 +44,7 @@
 				    </g>
 				</svg>
             </div>
-            <div class="data-water" v-bind:style="{ backgroundPosition: '0 110px' }">
+            <div class="data-water" v-bind:style="{ backgroundImage: 'url(img/wave-' + waterPer + '.png)' }">
             	There is<br>
                 {{ water }}%<br>
                 water on this planet.
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-    
+
     import planets from 'api/planets.json';
 
     export default {
@@ -71,15 +71,28 @@
          */
         data() {
             const param = this.$route.params.planet;
-            let informations;
+            let informations, waterPer;
 
             planets.map(planet => {
                 if(planet.name.toLowerCase() == param) {
                     informations = planet;
+
+                    if(planet.water >= 50) {
+                        waterPer = 'big';
+                    }
+                    else if (water < 50 && water >= 5) {
+                        waterPer = 'small';
+                    }
+                    else {
+                        waterPer = 'xsmall';
+                    }
                 }
             });
 
-            return informations;
+            return {
+                ...informations,
+                waterPer
+            };
         },
 
     }
