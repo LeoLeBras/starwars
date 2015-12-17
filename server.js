@@ -39,8 +39,12 @@ io.on('connection', (socket) => {
 
 	// Explore a planet
 	socket.on('explore', (data) => {
-		console.log(data);
         socket.broadcast.emit('explore', data);
+	});
+
+	// Explore a planet
+	socket.on('closeExplore', (data) => {
+        socket.broadcast.emit('closeExplore', data);
 	});
 
 });

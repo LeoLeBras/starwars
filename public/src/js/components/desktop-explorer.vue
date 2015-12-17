@@ -30,6 +30,7 @@
          *   - {object} xwing
          *   - {array} stars
          *   - {array} planets
+         *   - {bool} openDataviz
          *
          * @return {object}
          */
@@ -83,7 +84,8 @@
                     speed: 5
                 },
                 stars,
-                planets
+                planets,
+                openDataviz: false
             };
 
         },
@@ -111,8 +113,21 @@
             // The user want to expore a planet
             socket.on('explore', (response) => {
                 if(response.client == key) { // Test the key
-                    return this.$route.router.go({
+                    this.openDataviz = true;
+                    this.xwing.speed = 0;
+                    this.$route.router.go({
                         path: '/data/' + response.data.planet.toLowerCase()
+                    });
+                }
+            });
+
+            // The user want to close the dataviz
+            socket.on('closeExplore', (response) => {
+                if(response.client == key) { // Test the key
+                    this.openDataviz = false;
+                    this.xwing.speed = 5;
+                    this.$route.router.go({
+                        path: '/explorer?key=' + key
                     });
                 }
             });
@@ -139,7 +154,8 @@
             const render = () => {
 
                 // Request animation frame
-                window.requestAnimationFrame(render);
+                if(!this.openDataviz)
+                    window.requestAnimationFrame(render);
                 clearCanvas(c);
 
                 // Move elements

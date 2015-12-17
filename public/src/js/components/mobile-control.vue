@@ -1,9 +1,10 @@
 <template>
     <div class="container">
         <img src="../../img/logo-strokeWhite.svg" alt="Star Wars" class="logo"/>
-        <div v-bind:style="{ transform: ' translateX(-50%) translateY(-50%) rotate(' + rotation + 'deg)' }" class="ship"></div>
+        <div v-if="!explore" v-bind:style="{ transform: ' translateX(-50%) translateY(-50%) rotate(' + rotation + 'deg)' }" class="ship"></div>
         <a v-if="findPlanet" v-on:click="goExplore" class="explore">Explore {{ findPlanet }} !</a>
-        <a v-if="!findPlanet" v-on:click="stop" class="stop">Stop !</a>
+        <a v-if="explore" v-on:click="closeExplore" class="close">Close x</a>
+        <a v-if="!explore||!findPlanet" v-on:click="stop" class="stop">Stop !</a>
     </div>
 </template>
 
@@ -121,13 +122,21 @@
                         planet: this.findPlanet
                     }
                 });
+            },
 
-                socket.emit('handle', {
-                    client: this.key,
-                    data: {
-                        rotation: this.rotation,
-                        speed: 0
-                    }
+
+
+            /*
+             * closeExplore()
+             * Close the data
+             *
+             * @return {integer} this.explore
+             */
+            closeExplore() {
+                this.explore = !this.explore;
+
+                socket.emit('closeExplore', {
+                    client: this.key
                 });
             }
 
@@ -171,6 +180,24 @@
         left: 50%;
         transform: translateX(-50%);
         width: 110px;
+    }
+
+    .close {
+        $size: calc(250px + 10vw);
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;   left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: $size;   height: $size;
+        text-align: center;
+        background: white;
+        border-radius: 50%;
+        line-height: $size;
+        vertical-align: middle;
+        text-transform: uppercase;
+        color: $color;
+        z-index: 2;
     }
 
     .explore {
