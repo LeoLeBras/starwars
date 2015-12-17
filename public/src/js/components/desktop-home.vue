@@ -1,11 +1,17 @@
 <template>
     <div class="container">
-            <div class="logo"></div>
-            <!-- <img src="../../img/logo.png" alt="logo" class="logo"/> -->
-            <p class="description">
-                Welcome to Star Wars : The Galaxy Explorer. In here, you will have to navigate your way through the galaxy and find extraordinary planets. There, you will find amazing data about planets, species and even space ships. <br>For the best possible experience, we advise you to navigate through the experience with you smartphone. <br> Hoping you will enjoy your trip, we'll see you on the other side, young padawan !
-            </p>
-            <a v-link="'phone'" class="phone">START THE EXPERIENCE</a>
+        <div class="logo"></div>
+        <!-- <img src="../../img/logo.png" alt="logo" class="logo"/> -->
+        <p class="description">
+            Welcome to Star Wars : The Galaxy Explorer.
+            <br>In here, you will have to travel your way through the galaxy and find extraordinary planets.
+            <br>Then, you will have access to amazing data about planets, species and even space ships.
+        </p>
+        <p class="description-2">
+            For the best possible experience, you will navigate through the experience with you smartphone.
+            <br>Hoping you will enjoy your trip, we'll see you on the other side, scoundrel !
+        </p>
+        <a v-link="'phone'" class="phone">START THE EXPERIENCE</a>
     </div>
 </template>
 
@@ -36,9 +42,17 @@
 }
 
 .description{
-    width: 875px;
-    margin: 150px auto 0px;
+    width: 800px;
+    margin: 8% auto 0px;
 }
+
+.description-2
+{
+    width: 800px;
+    margin: 20px auto 8%;
+}
+
+
 
 /*.mode{
     width: 450px;
@@ -50,7 +64,6 @@
     width: 350px;
     border: 3px solid yellow;
     border-radius: 10px;
-    margin-top: 75px;
     background-color: rgba(255, 255, 255, 0);
     transition: 0.3s ease;
     color: #ffffff;
@@ -63,7 +76,7 @@
 .phone:hover{
     background-color: rgba(255, 255, 255, 1);
     transition: 0.3s ease;
-    color: #363636;
+    color: #222222;
 }
 
 /*.phone-icon{
