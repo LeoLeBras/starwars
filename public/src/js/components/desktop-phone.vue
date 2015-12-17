@@ -2,7 +2,7 @@
     <div class="container">
         <div class="logo"></div>
         <div class="description">To start the experience, please follow this link with your smartphone and pair it to your computer.</div>
-        <div><a class="link" href="https://goo.gl/0uwLud">https://goo.gl/0uwLud</a></div>
+        <div><a class="link" href="http://goo.gl/spSIGd">http://goo.gl/spSIGd</a></div>
         <div class="description-2">Then, enter the following code :</div>
         <div class="code">{{ key }}</div>
         <div class="loader">
