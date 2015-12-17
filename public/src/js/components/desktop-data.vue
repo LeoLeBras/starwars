@@ -54,7 +54,7 @@
 </template>
 
 <script>
-
+    
     import planets from 'api/planets.json';
 
     export default {
