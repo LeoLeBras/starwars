@@ -138,35 +138,40 @@
     .planet {
         width: 300px;
         height: 300px;
-        background-size: cover;
+        background-size: contain;
         background-position: center;
+        background-repeat: no-repeat;
         position: absolute;
-        top: 50%;
+        top: 330px;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%);
     }
 
     .round {
         position: absolute;
-        left: 50%;  top: 50%;
         border: 2px solid rgba(255, 255, 255, 0.3);
         border-radius: 100%;
-        transform: translateX(-50%) translateY(-50%);
     }
 
     .round-1 {
-    	width: 475px;
-    	height: 475px;
+        width: 475px;
+        height: 475px;
+        left: 50%;  top: 245px;
+        transform: translateX(-50%);
     }
 
     .round-2 {
-    	width: 675px;
-    	height: 675px;
+        width: 675px;
+        height: 675px;
+        left: 50%;  top: 145px;
+        transform: translateX(-50%);
     }
 
     .round-3 {
-    	width: 875px;
-    	height: 875px;
+        width: 875px;
+        height: 875px;
+        left: 50%;  top: 45px;
+        transform: translateX(-50%);
     }
 
     .data-slider
