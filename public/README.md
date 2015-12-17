@@ -5,7 +5,7 @@
 
 ## Stack
 - [Gulp](http://gulpjs.com/) streaming build system
-- [Webpack](https://webpack.github.io/) module loader and bundler
+- [gulpWebpack](https://gulpWebpack.github.io/) module loader and bundler
 - [Browsersync](http://www.browsersync.io/) time-saving synchronised browser testing
 - [Sass](http://sass-lang.com/) CSS with superpowers
 - [Babel](http://babeljs.io/) `^6.0.0` ES6+ support

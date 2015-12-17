@@ -9,21 +9,20 @@
 
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import base64 from 'gulp-base64';
-import babel from 'gulp-babel';
 import clean  from 'gulp-rimraf';
 import cssbeautify  from 'gulp-cssbeautify';
 import cssnano  from 'gulp-cssnano';
 import gulp  from 'gulp';
+import gulpWebpack  from 'gulp-webpack';
 import imagemin  from 'gulp-imagemin';
 import inline  from 'gulp-inline-source';
 import postcss  from 'gulp-postcss';
 import sass  from 'gulp-sass';
 import sourcemaps  from 'gulp-sourcemaps';
-import uglify  from 'gulp-uglify';
 import ttf2woff  from 'gulp-ttf2woff';
 import ttf2woff2  from 'gulp-ttf2woff2';
 import watch  from 'gulp-watch';
-import webpack  from 'gulp-webpack';
+import webpack  from 'webpack';
 import argv from 'yargs';
 
 import config from './config.js';
@@ -96,7 +95,7 @@ gulp.task('js', () => {
     }
 
     return gulp.src(`${srcDir + jsDir}*.js`)
-        .pipe(webpack({
+        .pipe(gulpWebpack({
             devtool: 'source-map',
             entry: entry,
             output: {
@@ -138,7 +137,11 @@ gulp.task('js', () => {
             },
             plugins: [
                 new ExtractTextPlugin('[name].css', { disabled: !argv.argv.watch }),
-            ]
+            ].concat(
+                !argv.argv.watch ? [
+                    new webpack.optimize.UglifyJsPlugin()
+                ] : []
+            ),
         }))
         .pipe(gulp.dest(buildDir + jsDir));
 });
@@ -226,12 +229,6 @@ gulp.task('build', ['sass', 'img', 'js', 'html'], () => {
         }))
         .pipe(cssnano())
         .pipe(gulp.dest(buildDir + cssDir));
-
-    // Uglify js files
-    gulp.src(buildDir + jsDir + '*.js')
-        .pipe(babel(config.javascript.babel))
-        .pipe(uglify())
-        .pipe(gulp.dest(buildDir + jsDir));
 
 });
 

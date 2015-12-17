@@ -122,7 +122,6 @@
 
             // The user want to expore a planet
             socket.on('explore', (response) => {
-                console.log('explore');
                 if(response.client == key) { // Test the key
                     return this.$route.router.go({
                         path: '/data/' + response.data.planet.toLowerCase()
