@@ -101,11 +101,12 @@
             const key = this.$route.query.key; // get the key
 
             // The device handle the rotation
-            socket.on('handleRotation', (response) => {
-                if(response.headers.client == key) { // Test the key
+            socket.on('handle', (response) => {
+                if(response.client == key) { // Test the key
 
                     // Set rotation
                     this.xwing.rotation = response.data.rotation;
+                    this.xwing.speed = response.data.speed;
 
                     // Rotate .xwing
                     dynamics.animate(document.querySelector('.xwing'), {
@@ -118,6 +119,17 @@
 
                 }
             });
+
+            // The user want to expore a planet
+            socket.on('explore', (response) => {
+                console.log('explore');
+                if(response.client == key) { // Test the key
+                    return this.$route.router.go({
+                        path: '/data/' + response.data.planet.toLowerCase()
+                    });
+                }
+            });
+
 
             // Wait loading planets
             this.planets.map((planet, i) => {
@@ -228,14 +240,10 @@
                 // The x-Wing is next to a planet
                 const xwing = this.xwing;
                 this.planets.map((planet, i) => {
-                    if(Math.sqrt(Math.pow(xwing.x - planet.x, 2) + Math.pow(planet.y - xwing.y, 2)) < planet.size * 1.5) {
+                    if(Math.sqrt(Math.pow(xwing.x - (planet.x - planet.size), 2) + Math.pow((planet.y - planet.size) - xwing.y, 2)) < planet.size * 2) {
                         if(!planet.explore) {
-                            console.log('explore');
                             socket.emit('findPlanet', {
-                                headers: {
-                                    from: 'desktop',
-                                    key: this.key
-                                },
+                                key: this.key,
                                 data: {
                                     planet: planet.name
                                 }
@@ -290,6 +298,7 @@
 
     .canvas {
         position: absolute;
+        z-index: 0;
     }
 
     .info {

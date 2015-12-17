@@ -19,10 +19,7 @@ io.on('connection', (socket) => {
 		if(index !== -1) {
 			users = users.slice(index, 1); // Remove user
 			io.emit('connectDevice', {
-				headers: {
-					from: 'server',
-					client: data.key
-				},
+				client: data.key,
 				data: {
 					key: data.key
 				}
@@ -31,13 +28,19 @@ io.on('connection', (socket) => {
 	});
 
     // Handle rotation of the device
-	socket.on('handleRotation', (data) => {
-        socket.broadcast.emit('handleRotation', data);
+	socket.on('handle', (data) => {
+        socket.broadcast.emit('handle', data);
 	});
 
 	// Find a planet
 	socket.on('findPlanet', (data) => {
         socket.broadcast.emit('findPlanet', data);
+	});
+
+	// Explore a planet
+	socket.on('explore', (data) => {
+		console.log(data);
+        socket.broadcast.emit('explore', data);
 	});
 
 });

@@ -2,8 +2,8 @@
     <div class="container">
         <img src="../../img/logo-strokeWhite.svg" alt="Star Wars" class="logo"/>
         <div v-bind:style="{ transform: ' translateX(-50%) translateY(-50%) rotate(' + rotation + 'deg)' }" class="ship"></div>
-        <a v-if="findPlanet" class="explore">Explore {{findPlanet}} !</a>
-        <a v-if="!findPlanet" href="#/" class="stop">Stop !</a>
+        <a v-if="findPlanet" v-on:click="goExplore" class="explore">Explore {{ findPlanet }} !</a>
+        <a v-if="!findPlanet" v-on:click="stop" class="stop">Stop !</a>
     </div>
 </template>
 
@@ -24,6 +24,7 @@
          *   - {integer} rotation
          *   - {integer} speed
          *   - {integer} findPlanet
+         *   - {integer} key
          *
          * @return {object}
          */
@@ -31,7 +32,9 @@
             return {
                 rotation: 0,
                 speed: 5,
-                findPlanet: false
+                findPlanet: false,
+                key: 0,
+                explore: false
             }
         },
 
@@ -42,11 +45,11 @@
          *
          */
         ready() {
-             const key = this.$route.query.key; // get the key
+             this.key = this.$route.query.key; // get the key
 
              let rotation = 0, lastRotation = 0;
 
-             const handleRotation = (o) => {
+             const handle = (o) => {
                  lastRotation = rotation,
                  rotation = Math.floor(o.x * 10) * -1;
 
@@ -56,16 +59,13 @@
                  if(Math.abs(rotation - lastRotation) > 4) {
 
                      // Send socket
-                     socket.emit('handleRotation', {
-                         headers: {
-                             from: 'mobile',
-                             client: key
-                         },
+                     socket.emit('handle', {
+                         client: this.key,
                          data: {
-                             rotation
+                             rotation,
+                             speed: this.speed
                          }
                      });
-                     console.log(this);
 
                      // Rotate the ship
                      this.rotation = rotation;
@@ -73,7 +73,7 @@
                  }
              };
 
-             gyro.startTracking(handleRotation.bind(this));
+             gyro.startTracking(handle.bind(this));
 
              socket.on('findPlanet', response => {
                  this.findPlanet = response.data.planet;
@@ -82,7 +82,49 @@
                      this.findPlanet = false;
                  }, 5000)
              })
+        },
+
+        methods: {
+
+            /*
+             * stop()
+             * Toogle the speed of the ship
+             *
+             * @return {integer} this.speed
+             */
+            stop() {
+                this.speed = (this.speed == 5 ? 0 : 5);
+
+                socket.emit('handle', {
+                    client: this.key,
+                    data: {
+                        rotation: this.rotation,
+                        speed: this.speed
+                    }
+                });
+            },
+
+
+
+            /*
+             * goExplore()
+             * Explore the planet
+             *
+             * @return {integer} this.explore
+             */
+            goExplore() {
+                this.explore = !this.explore;
+
+                socket.emit('explore', {
+                    client: this.key,
+                    data: {
+                        planet: this.findPlanet
+                    }
+                });
+            }
+
         }
+
 
     }
 
@@ -139,6 +181,26 @@
         text-transform: uppercase;
         color: $color;
         z-index: 2;
+        animation: bounce .4s ease infinite;
+    }
+
+    .explore-enter,
+    .explore-leave {
+        transform: translateX(-50%) translateY(-50%) scale(0);
+    }
+
+    @keyframes bounce {
+        0% {
+            transform: translateX(-50%) translateY(-50%) scale(1);
+        }
+
+        50% {
+            transform: translateX(-50%) translateY(-50%) scale(1.1);
+        }
+
+        100% {
+            transform: translateX(-50%) translateY(-50%) scale(1);
+        }
     }
 
     .ship {
@@ -159,7 +221,7 @@
         position: absolute;
         left: 50%;  bottom: 30px;
         transform: translateX(-50%);
-        padding: 8px 12px 9px;
+        padding: 10px 14px 11px;
         background: white;
         border-radius: 7px;
         color: $color;

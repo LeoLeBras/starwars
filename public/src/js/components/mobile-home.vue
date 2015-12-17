@@ -125,6 +125,7 @@
     .input {
         display: inline-block;
         vertical-align: middle;
+        transform: translateY(-1px);
         width: 90%;
         text-align: center;
         padding-left: 10px;
