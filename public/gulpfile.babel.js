@@ -29,9 +29,8 @@ const { srcDir, buildDir, cssDir, imgDir, sassDir, fontsDir, jsDir } = config.di
 
 
 // Sass
-gulp.task('sass', () => {
-
-    return gulp.src([srcDir + 'sass/*.scss'])
+gulp.task('sass', () => (
+    gulp.src([srcDir + 'sass/*.scss'])
         .pipe(sourcemaps.init())
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(postcss([
@@ -41,12 +40,12 @@ gulp.task('sass', () => {
         ]))
         .pipe(cssbeautify())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(buildDir + cssDir));;
-});
+        .pipe(gulp.dest(buildDir + cssDir))
+));
 
 
 
-// Babel
+// Babel with webpack
 gulp.task('js', () => {
     let entry = {};
     config.javascript.entry.map(item => {
@@ -170,10 +169,6 @@ gulp.task('build', ['sass', 'img', 'js', 'html'], () => {
     gulp.src(buildDir + '*.html')
         .pipe(inline())
         .pipe(gulp.dest(buildDir));
-
-    // Move fonts files
-    gulp.src(srcDir + fontsDir + '**/*')
-        .pipe(gulp.dest(buildDir + fontsDir));
 
     // Base64 img in css files files and minify (except css font files)
     gulp.src(buildDir + cssDir + '*')

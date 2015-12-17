@@ -41,24 +41,24 @@
         methods: {
 
             /*
-             * onSubmit()
+             * On submit the key
              *
              */
             onSubmit() {
                 const socket = io();
 
-                socket.emit('findConnection', {
+                socket.emit('findConnection', { // Send key
                     key: this.key
                 });
 
-                socket.on('connectDevice', response => {
+                socket.on('connectDevice', response => { // Wait response
                     return this.$route.router.go({
                         path: '/control',
                         query: { key: response.data.key }
                     });
                 });
 
-                setTimeout(() => {
+                setTimeout(() => { // Show the error if no response
                     return this.error = true;
                 }, 1000);
             }

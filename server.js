@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('explore', data);
 	});
 
-	// Explore a planet
+	// Close the dataviz
 	socket.on('closeExplore', (data) => {
         socket.broadcast.emit('closeExplore', data);
 	});

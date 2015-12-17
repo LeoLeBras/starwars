@@ -3,9 +3,6 @@
         <div class="logo"></div>
         <canvas class="canvas"></canvas>
         <div v-bind:style="{ transform: 'rotate(' + xwing.rotation + 'deg)' }" class="xwing"></div>
-        <div class="info">
-            rotation: {{ xwing.rotation }}
-        </div>
     </div>
 </template>
 
@@ -110,7 +107,7 @@
                 }
             });
 
-            // The user want to expore a planet
+            // The user want to explore a planet
             socket.on('explore', (response) => {
                 if(response.client == key) { // Test the key
                     this.openDataviz = true;
@@ -154,7 +151,7 @@
             const render = () => {
 
                 // Request animation frame
-                if(!this.openDataviz)
+                if(!this.openDataviz) // If the dataviz is not open
                     window.requestAnimationFrame(render);
                 clearCanvas(c);
 
