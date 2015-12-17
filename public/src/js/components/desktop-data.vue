@@ -18,7 +18,7 @@
                 {{ population }}
             </div>
             <div class="data-chapter">
-				<svg width="232px" height="232px" viewBox="0 0 232 232" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+				<svg class="data-chapter-img" width="232px" height="232px" viewBox="0 0 232 232" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
 				    <defs>
 				        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="55.3668478%" id="radialGradient-1">
 				            <stop stop-color="#000000" stop-opacity="0.0124547101" offset="0%"></stop>
@@ -110,11 +110,11 @@
     .wrapper {
     	position: relative;
     	width: 1000px;
-    	height: 1000px;
+    	height: 100vh;
     	top: 50%;
     	left: 50%;
     	transform: translateX(-50%) rotate(0deg);
-    	animation: wrapper-rotate 30s linear infinite ;
+    	animation: wrapper-rotate 30s linear infinite paused;
     }
 
     @keyframes wrapper-rotate {
@@ -136,30 +136,30 @@
     .round {
         position: absolute;
         left: 50%;  top: 50%;
-        border: 2px solid rgba(white, .25);
+        border: 2px solid rgba(255, 255, 255, 0.3);
         border-radius: 100%;
         transform: translateX(-50%) translateY(-50%);
     }
 
     .round-1 {
-    	width: 500px;
-    	height: 500px;
+    	width: 475px;
+    	height: 475px;
     }
 
     .round-2 {
-    	width: 700px;
-    	height: 700px;
+    	width: 675px;
+    	height: 675px;
     }
 
     .round-3 {
-    	width: 900px;
-    	height: 900px;
+    	width: 875px;
+    	height: 875px;
     }
 
     .data-slider
     {
     	position: absolute;
-    	top: 80px;
+    	top: 65px;
     	left: 515px;
     	animation: rotate-slider 30s linear infinite;
     }
@@ -178,7 +178,7 @@
     	background-position: center;
     	width: 160px;
     	height: 160px;
-    	top: 665px;
+    	top: 640px;
     	left: 50%;
     	transform: translateX(-50%) rotate(0deg);
     	text-align: center;
@@ -198,19 +198,19 @@
     	width: 175px;
     	height: 175px;
     	top: 200px;
-    	left: 820px;
+    	left: 818px;
+    }
+
+    .data-chapter-img
+    {
     	animation: rotate-chapter 30s linear infinite;
+    	width: 100%;
     }
 
     @keyframes rotate-chapter
     {
-    	0%	 {transform: rotate(0deg);}
-    	100% {transform: rotate(-360deg);}
-    }
-
-    .data-chapter svg
-    {
-    	width: 100%;
+        0%   {transform: rotate(0deg);}
+        100% {transform: rotate(-360deg);}
     }
 
     .data-water
@@ -221,18 +221,18 @@
     	border: 2px solid white;
     	position: absolute;
     	top: 500px;
-    	left: 85px;
+    	left: 105px;
     	padding-top: 20px;
-    	background-image: url(../../img/wave.png);
+    	background-image: url(../../img/wave-small.png);
     	background-repeat: repeat-x;
     	background-size: 150px;
-    	animation: waving 3s linear infinite, water-rotate 30s linear infinite;
+    	animation: waving 3s linear infinite, water-rotate 30s linear infinite paused;
     }
 
     @keyframes waving
     {
-    	0% { background-position: 0px 110px; }
-    	100% { background-position: 300px 110px; }
+    	0% { background-position: 0px 10px; }
+    	100% { background-position: 300px 10px; }
     }
 
     @keyframes water-rotate
@@ -265,16 +265,17 @@
         max-width: 800px;
         box-sizing: border-box;
 
-        &:before {
-            content: '<->';
-            background: rgba(0,0,0,.7);
-            font-size: 18px;
-            color: white;
-            top: 0; right: 0px;
-            height: 100%;
-            line-height: 486px;
-            position: absolute;
-        }
+    }
+
+    .film:before {
+        content: '↔';
+        background: rgba(0,0,0,.7);
+        font-size: 8px;
+        color: white;
+        top: 0; right: 0px;
+        height: 100%;
+        line-height: 486px;
+        position: absolute;
     }
 
     .charly{
@@ -291,6 +292,13 @@
         cursor: all-scroll;
         transform: scaley(35);
         transform-origin: center center;
+        animation: delta 5s 1s ease-in-out;
+    }
+
+    @keyframes delta {
+        0%   {width: 0px}
+        50%  {width: 150px}
+        100% {width: 10px}
     }
 
 </style>
