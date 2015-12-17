@@ -1,11 +1,15 @@
 <template>
     <div class="container">
         <div class="wrapper">
-            <img src="../../img/logo.png" alt="logo" class="logo">
-            <p class="description">Welcome to the Star Wars Galaxy Explorer experience.
-            <br>To pair your mobile phone with your computer, please enter the code in the following area.</p>
+            <img src="../../img/logo-strokeYellow.svg" alt="Star Wars" class="logo">
+            <h1 class="title">Galaxy Explorer</h1>
+            <p class="introduction">
+                Welcome to the experience !<br>
+                Please enter the code provided
+                by the website in the following area :
+            </p>
             <div v-if="error" class="error">
-                Pairing failed, please try again.
+                Pairing failed, please try again !
             </div>
             <form v-on:submit.prevent="onSubmit" class="form">
                 <input type="text" class="input" v-model="key" placeholder="Enter the code">
@@ -64,57 +68,64 @@
 <style scoped>
 
     .container {
-    	width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     	min-height: 100vh;
-        background-image: url(../../img/back-mobile.jpg);
-        background-position: center;
-        background-size: cover;
+        background: #201249;
         color: #ffffff;
     }
 
     .wrapper {
-        width: 100%;
-        height: 100%;
-        padding-top: 30px;
+        margin: auto;
+        transform: translateY(-20px);
+        text-align: center;
     }
 
     .logo {
         display: block;
         margin: 0px auto 50px;
-        width: 180px;
+        width: 140px;
     }
 
-    .description {
-        width: 275px;
+    .title {
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-size: 20px;
+    }
+
+    .introduction {
+        max-width: 275px;
         margin: auto;
         text-align: center;
         font-size: 14px;
     }
 
     .error {
-        width: 275px;
-        margin: 50px auto 0px;
-        text-align: center;
-        font-size: 14px;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+        margin: 50px auto 3px;
+        width: 275px;
+        color: #FFE81F;
+        text-align: center;
+        font-size: 14px;
     }
 
     .form {
-        border-radius: 30px;
-        border: 2px solid yellow;
-        height: 50px;
-        line-height: 48px;
-        width: 250px;
-        margin: 80px auto 10px;
         position: relative;
+        margin: 35px auto 10px;
+        width: 250px;   height: 50px;
+        border: 2px solid #FFE81F;
+        border-radius: 30px;
+        line-height: 48px;
+        text-align: left;
     }
 
     .input {
         display: inline-block;
         vertical-align: middle;
-        width: 100%;
+        width: 90%;
         text-align: center;
     }
 
@@ -134,9 +145,9 @@
     	display: inline-block;
         position: absolute;
     	width: 30px;   height: 30px;
-        right: 12px;    top: 10px;
+        right: 12px;    top: 8px;
         background-image: url(../../img/icon-Arrow.svg);
-        background-size: 75%;
+        background-size: 55%;
         background-position: center;
         background-repeat: no-repeat;
     }

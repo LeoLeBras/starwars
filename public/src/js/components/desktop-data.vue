@@ -49,7 +49,7 @@
 {
     width: 300px;
     height: 300px;
-    background-image: url(../../img/planet-tatooine.png);
+    background-image: url(../../img/planet-Tatooine.png);
     background-size: cover;
     background-position: center;
 }

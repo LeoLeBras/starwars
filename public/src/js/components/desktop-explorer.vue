@@ -67,6 +67,7 @@
                     ...planet,
                     source: img,
                     loaded: false,
+                    explore: false,
                     size: planetSize
                 };
             })
@@ -220,9 +221,24 @@
 
                 // The x-Wing is next to a planet
                 const xwing = this.xwing;
-                this.planets.map(planet => {
+                this.planets.map((planet, i) => {
                     if(Math.sqrt(Math.pow(xwing.x - planet.x, 2) + Math.pow(planet.y - xwing.y, 2)) < planet.size) {
-                        console.log('Fuck yeah !');
+                        if(!planet.explore) {
+                            console.log('explore');
+                            socket.emit('findPlanet', {
+                                headers: {
+                                    from: 'desktop',
+                                    key: this.key
+                                },
+                                data: {
+                                    planet: planet.name
+                                }
+                            });
+                        }
+                        this.planets[i].explore = true;
+                    }
+                    else {
+                        this.planets[i].explore = false;
                     }
                 });
 
@@ -255,7 +271,7 @@
         position: absolute;
         top: 30px;  left: 30px;
         width: 90px;    height: 40px;
-        background-image: url('../../img/logo-small-fillWhite.svg');
+        background-image: url('../../img/logo-fillWhite.svg');
         background-size: cover;
     }
 

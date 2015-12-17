@@ -35,6 +35,11 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('handleRotation', data);
 	});
 
+	// Find a planet
+	socket.on('findPlanet', (data) => {
+        socket.broadcast.emit('findPlanet', data);
+	});
+
 });
 
 console.log('Your server is running on http://localhost:' + port);

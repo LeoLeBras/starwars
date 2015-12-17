@@ -1,6 +1,6 @@
 <svg width="21px" height="18px" viewBox="0 0 21 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="Home-Smartphone" sketch:type="MSArtboardGroup" transform="translate(-270.000000, -436.000000)" fill="#FEFEFE">
+        <g id="Home-Smartphone" sketch:type="MSArtboardGroup" transform="translate(-270.000000, -436.000000)" fill="#FFE81F">
             <g id="Button-Copy" sketch:type="MSLayerGroup" transform="translate(63.000000, 420.000000)">
                 <path d="M216.966667,16.3461538 C216.506667,16.8076923 216.506667,17.7307692 216.966667,18.1923077 L222.333333,23.5769231 L208.38,23.5769231 C207.613333,23.5769231 207,24.1923077 207,24.9615385 C207,25.7307692 207.613333,26.3461538 208.38,26.3461538 L222.333333,26.3461538 L216.966667,31.7307692 C216.506667,32.1923077 216.506667,33.1153846 216.966667,33.5769231 C217.273333,33.8846154 217.58,33.8846154 217.886667,33.8846154 C218.193333,33.8846154 218.653333,33.7307692 218.806667,33.5769231 L227.24,25.1153846 L218.806667,16.3461538 C218.346667,15.8846154 217.426667,15.8846154 216.966667,16.3461538 Z" id="Imported-Layers" sketch:type="MSShapeGroup"></path>
             </g>
