@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <img src="../../img/logo.png" alt="logo" class="logo"/>
+        <div class="logo"></div>
         <div class="description">To start the experience, please follow this link with your smartphone and pair it to your computer.</div>
         <div><a class="link" href="https://goo.gl/0uwLud">https://goo.gl/0uwLud</a></div>
         <div class="description-2">Then, enter the following code :</div>
-        <div class="code">key: # {{ key }}</div>
+        <div class="code">{{ key }}</div>
         <div class="loader">
             <div class="sun"></div>
             <div class="eclipse"></div>
@@ -77,15 +77,19 @@
 .logo
 {
     width: 275px;
+    height: 135px;
     position: relative;
     display: block;
     margin: auto;
+    background-image: url(../../img/logo.png);
+    background-size: cover;
+    background-position: center;
 }
 
 .description
 {
     margin-top: 6%;
-    margin-bottom: 5px;  
+    margin-bottom: 5px;
 }
 
 .link
@@ -99,7 +103,7 @@
 
 .link:hover
 {
-    transition: all 0.3s ease;    
+    transition: all 0.3s ease;
     color: yellow;
     border-bottom: 1px solid rgba(255, 255, 0, 1);
 }
@@ -126,8 +130,8 @@
 
 .sun
 {
-    background-color: black;
-    border: 2px solid yellow;
+    background-color: white;
+    border: 3px solid yellow;
     width: 50px;
     height: 50px;
     margin: auto;
@@ -137,61 +141,43 @@
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%) scale(1);
-    animation: bounce 10s ease infinite;
+    animation: bounce 3.5s ease infinite;
 }
 
 @keyframes bounce
 {
     0%   {transform: translateX(-50%) translateY(-50%) scale(1);}
+
     20%  {transform: translateX(-50%) translateY(-50%) scale(1);}
-
-    21%  {transform: translateX(-50%) translateY(-50%) scale(1.3);}
-    22%  {transform: translateX(-50%) translateY(-50%) scale(1);}
-    23%  {transform: translateX(-50%) translateY(-50%) scale(1.6);}
-    24%  {transform: translateX(-50%) translateY(-50%) scale(1);}
-    25%  {transform: translateX(-50%) translateY(-50%) scale(1.9);}
-    26%  {transform: translateX(-50%) translateY(-50%) scale(1.2);}
-    27%  {transform: translateX(-50%) translateY(-50%) scale(1.5);}
-    28%  {transform: translateX(-50%) translateY(-50%) scale(1.1);}
-    29%  {transform: translateX(-50%) translateY(-50%) scale(1.6);}
-
+    25%  {transform: translateX(-50%) translateY(-50%) scale(1.3);}
     30%  {transform: translateX(-50%) translateY(-50%) scale(1);}
-    31%  {transform: translateX(-50%) translateY(-50%) scale(1.5);}
-    32%  {transform: translateX(-50%) translateY(-50%) scale(1);}
-
-    50%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+    35%  {transform: translateX(-50%) translateY(-50%) scale(1.6);}
+    40%  {transform: translateX(-50%) translateY(-50%) scale(1);}
+    45%  {transform: translateX(-50%) translateY(-50%) scale(1.9);}
+    50%  {transform: translateX(-50%) translateY(-50%) scale(1.2);}
+    55%  {transform: translateX(-50%) translateY(-50%) scale(1.5);}
+    60%  {transform: translateX(-50%) translateY(-50%) scale(1.1);}
+    65%  {transform: translateX(-50%) translateY(-50%) scale(1.6);}
     70%  {transform: translateX(-50%) translateY(-50%) scale(1);}
-
-    71%  {transform: translateX(-50%) translateY(-50%) scale(1.3);}
-    72%  {transform: translateX(-50%) translateY(-50%) scale(1);}
-    73%  {transform: translateX(-50%) translateY(-50%) scale(1.6);}
-    74%  {transform: translateX(-50%) translateY(-50%) scale(1);}
-    75%  {transform: translateX(-50%) translateY(-50%) scale(1.9);}
-    76%  {transform: translateX(-50%) translateY(-50%) scale(1.2);}
-    77%  {transform: translateX(-50%) translateY(-50%) scale(1.5);}
-    78%  {transform: translateX(-50%) translateY(-50%) scale(1.1);}
-    79%  {transform: translateX(-50%) translateY(-50%) scale(1.6);}
-
+    75%  {transform: translateX(-50%) translateY(-50%) scale(1.5);}
     80%  {transform: translateX(-50%) translateY(-50%) scale(1);}
-    81%  {transform: translateX(-50%) translateY(-50%) scale(1.5);}
-    82%  {transform: translateX(-50%) translateY(-50%) scale(1);}
 
     100% {transform: translateX(-50%) translateY(-50%) scale(1);}
 }
 
-.eclipse
+/*.eclipse
 {
-    background-image: url(../../img/test.png); 
+    background-image: url(../../img/test.png);
     width: 48px;
     height: 48px;
     border-radius: 100%;
     position: absolute;
     animation: hide 10s linear infinite;
     top: 50%;
-    transform: translateY(-50%) translateX(0);  
+    transform: translateY(-50%) translateX(0);
 }
 
-@keyframes hide 
+@keyframes hide
 {
     0%   {transform: translateY(-50%) translateX(0);}
     20%  {transform: translateY(-50%) translateX(76px);}
@@ -200,7 +186,7 @@
     70%  {transform: translateY(-50%) translateX(76px);}
     80%  {transform: translateY(-50%) translateX(76px);}
     100% {transform: translateY(-50%) translateX(0);}
-}
+}*/
 
 
 </style>
