@@ -12,8 +12,8 @@
 
 <script>
 
-    import gyro from 'gyro'; // gyroscope
     import dynamics from 'dynamics.js'; // animtion
+    import planetsJSON from 'api/planets.json';
     import { select, css } from 'dom';
     import { clearCanvas, drawCircle, clearCoordinates } from 'canvas';
 
@@ -43,8 +43,8 @@
             const canvasHeight = window.innerHeight;
 
             // Set territoryWidth and territoryHeight
-            const territoryWidth = 6000;
-            const territoryHeight = 4000;
+            const territoryWidth = 4380;
+            const territoryHeight = 2700;
 
             // Create stars (random)
             let stars = [];
@@ -58,15 +58,13 @@
 
             // Create planets
             const planetSize = 300;
-            let planets = ['Naboo', 'Tatooine'], img;
-            planets = planets.map(planet => {
+            let img;
+            let planets = planetsJSON.map(planet => {
                 img = document.createElement('img');
                 img.src = `../../img/planet-${planet}.png`;
 
                 return {
-                    name: planet,
-                    x: canvasWidth / 2 - planetSize / 2,
-                    y: canvasHeight / 2 - planetSize / 2,
+                    ...planet,
                     source: img,
                     loaded: false,
                     size: planetSize
@@ -150,7 +148,7 @@
                 let addX = 0,
                 addY = 0;
                 if(rotation == 0) {
-                    addY = -speed;
+                    addY = speed;
                 }
                 else {
                     addY = Math.cos(rotation * (Math.PI / 180)) * speed;
