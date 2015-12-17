@@ -103,6 +103,7 @@ gulp.task('js', () => {
                 extensions: ['', '.js', '.vue'],
                 modulesDirectories: [
                     'node_modules',
+                    'src/js/',
                     'src/js/vendors',
                     'src/js/helpers',
                     'src/js/components'
@@ -116,10 +117,13 @@ gulp.task('js', () => {
                 }, {
                     test: /\.vue$/,
                     loader: 'vue'
-                },{
+                }, {
+                    test: /\.json?$/,
+                    loader: 'json'
+                }, {
                     test: /.*\.(gif|png|jpe?g|svg)$/i,
                     loaders: [
-                      'url?limit=1000&name=img/[name].[ext]',
+                      'url?limit=1000&name=../img/[name].[ext]',
                       'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
                     ]
                 }]
