@@ -90,7 +90,7 @@ gulp.task('js', () => {
     if(!argv.argv.watch) {
         vueLoader = {
             ...vueLoader,
-            css: ExtractTextPlugin.extract('style-loader!css-loader')
+            css: ExtractTextPlugin.extract('css')
         };
     }
 
