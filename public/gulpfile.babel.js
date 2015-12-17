@@ -127,7 +127,7 @@ gulp.task('js', () => {
                 }, {
                     test: /.*\.(gif|png|jpe?g|svg)$/i,
                     loaders: [
-                      'url?limit=1000&name=img/[name].[ext]',
+                      'url?limit=1000&name=../img/[name].[ext]',
                       'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
                     ]
                 }]
