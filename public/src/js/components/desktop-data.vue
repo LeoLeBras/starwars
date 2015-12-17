@@ -14,7 +14,7 @@
             	</div>
             </div>
             <div class="data-resident" v-bind:style="{ backgroundImage:  'url(img/graph-' + name + '.svg)' }">
-            	Population<br>
+            	Population -<br>
                 {{ population }}
             </div>
             <div class="data-chapter">
@@ -86,7 +86,7 @@
 
 </script>
 
-<style lang="sass" scoped>
+<style lang="" scoped>
 
     .container {
         min-height: 100vh;
@@ -266,7 +266,7 @@
         box-sizing: border-box;
 
         &:before {
-            content: '-';
+            content: '<->';
             background: rgba(0,0,0,.7);
             font-size: 18px;
             color: white;

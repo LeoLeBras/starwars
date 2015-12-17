@@ -2,29 +2,35 @@
     "name": "Dagobah",
     "size": 500,
     "x": 2236,
-    "y": 543
-
+    "y": 543,
+    "water": 8,
+    "population": "none"
 }, {
     "name": "Endor",
     "size": 250,
     "x": 644,
-    "y": 2125
-
+    "y": 2125,
+    "water": 8,
+    "population": "30 milion"
 }, {
     "name": "Hoth",
     "x": 975,
     "y": 948,
-    "size": 302
+    "size": 302,
+    "water": 100,
+    "population": "Fewer than 10"    
 }, {
     "name": "Naboo",
     "x": 2707,
     "y": 1625,
-    "size": 445
+    "size": 445,
+    "water": 12,
+    "population": "4.5 billion"
 }, {
     "name": "Tatooine",
     "x": 3768,
     "y": 2311,
     "size": 379,
-    "water": 8,
+    "water": 1,
     "population": "200.000"
 }]
