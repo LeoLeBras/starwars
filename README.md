@@ -1,5 +1,5 @@
 # starwars
-See the experience: [https://fathomless-harbor-6904.herokuapp.com](https://fathomless-harbor-6904.herokuapp.com).
+See the experience: [http://starwars-explorer.herokuapp.com](http://starwars-explorer.herokuapp.com).
 
 
 ## Requirements
