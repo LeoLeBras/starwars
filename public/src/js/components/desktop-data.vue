@@ -3,6 +3,7 @@
         <div class="logo"></div>
         <div class="wrapper">
             <div class="planet" v-bind:style="{ backgroundImage:  'url(img/planet-' + name + '.png)' }"></div>
+            <div class="name">{{ name }}</div>
             <div class="round round-1"></div>
             <div class="round round-2"></div>
             <div class="round round-3"></div>
@@ -14,7 +15,7 @@
             	</div>
             </div>
             <div class="data-resident" v-bind:style="{ backgroundImage:  'url(img/graph-' + name + '.svg)' }">
-            	Population -<br>
+            	Population<br>
                 {{ population }}
             </div>
             <div class="data-chapter">
@@ -176,9 +177,12 @@
 
 </script>
 
-<style lang="" scoped>
+<style lang="sass" scoped>
 
     .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         min-height: 100vh;
         background-image: url('../../img/back3.jpg');
         background-position: center center;
@@ -199,17 +203,9 @@
 
     .wrapper {
     	position: relative;
-    	width: 1000px;
-    	height: 100vh;
-    	top: 50%;
-    	left: 50%;
-    	transform: translateX(-50%) rotate(0deg);
-    	animation: wrapper-rotate 30s linear infinite paused;
-    }
-
-    @keyframes wrapper-rotate {
-    	0%	 {transform: translateX(-50%) rotate(0deg);}
-    	100% {transform: translateX(-50%) rotate(360deg);}
+        margin: auto;
+        width: 875px;   height: 875px;
+        transform: translateY(-30px);
     }
 
     .planet {
@@ -223,6 +219,14 @@
         left: 50%;
         transform: translateX(-50%);
     }
+
+    .name {
+        text-transform: uppercase;
+        transform: translateY(653px);
+    }
+
+    /** *** **/
+
 
     .round {
         position: absolute;
@@ -259,86 +263,59 @@
     	animation: rotate-slider 30s linear infinite paused;
     }
 
-    @keyframes rotate-slider
-    {
-    	0%	 {transform: rotate(0deg);}
-    	100% {transform: rotate(-360deg);}
-    }
+
+    /** *** **/
 
 
-    .data-resident
-    {
+    .data-resident {
     	position: absolute;
+        left: 147px;     top: 250px;
+        padding: 54px 30px 0;
+        transform: translateX(-50%) rotate(0deg);
+        width: 160px;  height: 160px;
+        background-color: rgba(#201249, .6);
     	background-size: cover;
     	background-position: center;
-    	width: 160px;
-    	height: 160px;
-    	top: 640px;
-    	left: 50%;
-    	transform: translateX(-50%) rotate(0deg);
     	text-align: center;
-    	padding: 45px 30px;
+        border-radius: 50%;
     	animation: rotate-resident 30s linear infinite paused;
     }
 
-    @keyframes rotate-resident
-    {
-    	0%	 {transform: translateX(-50%) rotate(0deg);}
-    	100% {transform: translateX(-50%) rotate(-360deg);}
-    }
-
-    .data-chapter
-    {
+    .data-chapter {
     	position: absolute;
-    	width: 160px;
-    	height: 160px;
-    	top: 200px;
-    	left: 805px;
+    	width: 160px;  height: 160px;
+    	left: 752px;   top: 200px;
     }
 
-    .data-chapter-img, .st0
-    {
-    	animation: rotate-chapter 30s linear infinite paused;
-    	width: 100%;
-        height: 100%;
-        fill: rgba(255, 232, 31, 0); 
+    .data-chapter-img, .st0 {
+    	width: 100%;   height: 100%;
+        fill: rgba(255, 232, 31, 0);
         transition: 0.3s ease;
     }
 
-    .data-chapter-img:hover, .st0:hover
-    {   
+    .data-chapter-img:hover, .st0:hover {
         fill: rgba(255, 232, 31, 1);
         transition: 0.3s ease;
     }
 
-    .data-chapter-img .st1, .data-chapter-img #Numbers
-    {
-        transition: 0.3s ease;
+    .data-chapter-img .st1, .data-chapter-img #Numbers {
         fill: #FEFEFE;
-    }
-
-    .data-chapter-img:hover .st1, .data-chapter-img:hover #Numbers
-    {
         transition: 0.3s ease;
+    }
+
+    .data-chapter-img:hover .st1, .data-chapter-img:hover #Numbers {
         fill: #222222;
+        transition: 0.3s ease;
     }
 
-    @keyframes rotate-chapter
-    {
-        0%   {transform: rotate(0deg);}
-        100% {transform: rotate(-360deg);}
-    }
-
-    .data-water
-    {
-    	width: 150px;
-    	height: 150px;
+    .data-water {
+        position: absolute;
+        left: 49px;    top: 500px;
+    	width: 150px;  height: 150px;
     	border-radius: 100%;
     	border: 2px solid white;
-    	position: absolute;
-    	top: 500px;
-    	left: 105px;
     	padding-top: 20px;
+        background-color: rgba(#201249, .6);
     	background-image: url(../../img/wave-small.png);
     	background-repeat: repeat-x;
     	background-size: 150px;
