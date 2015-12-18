@@ -18,7 +18,7 @@
                 {{ population }}
             </div>
             <div class="data-chapter">
-				<svg class="data-chapter-img" width="232px" height="232px" viewBox="0 0 232 232" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+				<svg v-if="name == 'Tatooine'" class="data-chapter-img" width="232px" height="232px" viewBox="0 0 232 232" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
 				    <defs>
 				        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="55.3668478%" id="radialGradient-1">
 				            <stop stop-color="#000000" stop-opacity="0.0124547101" offset="0%"></stop>
