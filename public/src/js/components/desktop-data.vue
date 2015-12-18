@@ -277,7 +277,7 @@
     	left: 50%;
     	transform: translateX(-50%) rotate(0deg);
     	text-align: center;
-    	padding: 45px 0px;
+    	padding: 45px 30px;
     	animation: rotate-resident 30s linear infinite paused;
     }
 
